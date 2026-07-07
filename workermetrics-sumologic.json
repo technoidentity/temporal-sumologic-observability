@@ -1,0 +1,1008 @@
+{
+  "type": "DashboardV2SyncDefinition",
+  "name": "Temporal Worker Metrics",
+  "description": "Temporal Java SDK worker/workflow metrics (temporal_*) from Spring Boot /actuator/prometheus",
+  "title": "Temporal Worker Metrics",
+  "rootPanel": null,
+  "theme": "Light",
+  "topologyLabelMap": {
+    "data": {}
+  },
+  "refreshInterval": 0,
+  "timeRange": {
+    "type": "BeginBoundedTimeRange",
+    "from": {
+      "type": "RelativeTimeRangeBoundary",
+      "relativeTime": "-1h"
+    },
+    "to": null
+  },
+  "layout": {
+    "layoutType": "Grid",
+    "layoutStructures": [
+      {
+        "key": "panel7be07519522745a9",
+        "structure": "{\"height\": 9, \"width\": 8, \"x\": 0, \"y\": 0}"
+      },
+      {
+        "key": "panel6cfa0378c1ea4c94",
+        "structure": "{\"height\": 9, \"width\": 8, \"x\": 8, \"y\": 0}"
+      },
+      {
+        "key": "panelce8dc6a3bf8946fb",
+        "structure": "{\"height\": 9, \"width\": 8, \"x\": 16, \"y\": 0}"
+      },
+      {
+        "key": "panela5c3d5e1db01495f",
+        "structure": "{\"height\": 9, \"width\": 8, \"x\": 0, \"y\": 9}"
+      },
+      {
+        "key": "panela793647c8f814e4d",
+        "structure": "{\"height\": 9, \"width\": 8, \"x\": 8, \"y\": 9}"
+      },
+      {
+        "key": "panel0d2b405ff0f14ff9",
+        "structure": "{\"height\": 9, \"width\": 8, \"x\": 16, \"y\": 9}"
+      },
+      {
+        "key": "panel2876656616b849a4",
+        "structure": "{\"height\": 9, \"width\": 8, \"x\": 0, \"y\": 18}"
+      },
+      {
+        "key": "panel19b6a663d7884e67",
+        "structure": "{\"height\": 9, \"width\": 8, \"x\": 8, \"y\": 18}"
+      },
+      {
+        "key": "panelcf705a4d35f14dfb",
+        "structure": "{\"height\": 9, \"width\": 8, \"x\": 16, \"y\": 18}"
+      },
+      {
+        "key": "panel7e412130090b4454",
+        "structure": "{\"height\": 9, \"width\": 8, \"x\": 0, \"y\": 27}"
+      },
+      {
+        "key": "panelee92a8cd20974ba6",
+        "structure": "{\"height\": 9, \"width\": 8, \"x\": 8, \"y\": 27}"
+      },
+      {
+        "key": "panel27441ef57f9245b8",
+        "structure": "{\"height\": 9, \"width\": 8, \"x\": 16, \"y\": 27}"
+      },
+      {
+        "key": "panel101ada97f0de4f70",
+        "structure": "{\"height\": 9, \"width\": 8, \"x\": 0, \"y\": 36}"
+      },
+      {
+        "key": "panelaea5a47f8dec4c1e",
+        "structure": "{\"height\": 9, \"width\": 8, \"x\": 8, \"y\": 36}"
+      },
+      {
+        "key": "panel59caac3e03f84657",
+        "structure": "{\"height\": 9, \"width\": 8, \"x\": 16, \"y\": 36}"
+      },
+      {
+        "key": "panel13dad17a2e86443f",
+        "structure": "{\"height\": 9, \"width\": 8, \"x\": 0, \"y\": 45}"
+      },
+      {
+        "key": "panelc5f2c7081e0b40a1",
+        "structure": "{\"height\": 9, \"width\": 8, \"x\": 8, \"y\": 45}"
+      },
+      {
+        "key": "panel4a6c4e458bb84bca",
+        "structure": "{\"height\": 9, \"width\": 8, \"x\": 16, \"y\": 45}"
+      },
+      {
+        "key": "paneld07af96b209a4620",
+        "structure": "{\"height\": 9, \"width\": 8, \"x\": 0, \"y\": 54}"
+      },
+      {
+        "key": "panelcb6c93db0cb64fa9",
+        "structure": "{\"height\": 9, \"width\": 8, \"x\": 8, \"y\": 54}"
+      },
+      {
+        "key": "panel39e8e168915c49c3",
+        "structure": "{\"height\": 9, \"width\": 8, \"x\": 16, \"y\": 54}"
+      },
+      {
+        "key": "panelf1a0d853e5d84f05",
+        "structure": "{\"height\": 9, \"width\": 8, \"x\": 0, \"y\": 63}"
+      },
+      {
+        "key": "panelf4ff6bcff71843b4",
+        "structure": "{\"height\": 9, \"width\": 8, \"x\": 8, \"y\": 63}"
+      },
+      {
+        "key": "panel6d006a0510b74019",
+        "structure": "{\"height\": 9, \"width\": 8, \"x\": 16, \"y\": 63}"
+      },
+      {
+        "key": "panelaf900243fa584c09",
+        "structure": "{\"height\": 9, \"width\": 8, \"x\": 0, \"y\": 72}"
+      },
+      {
+        "key": "panel3a5200298f174f06",
+        "structure": "{\"height\": 9, \"width\": 8, \"x\": 8, \"y\": 72}"
+      },
+      {
+        "key": "panelc9865648ff4b4968",
+        "structure": "{\"height\": 9, \"width\": 8, \"x\": 16, \"y\": 72}"
+      },
+      {
+        "key": "panel435198abf564430d",
+        "structure": "{\"height\": 9, \"width\": 8, \"x\": 0, \"y\": 81}"
+      }
+    ]
+  },
+  "panels": [
+    {
+      "id": "b6c6fa929d3f4474",
+      "key": "panel7be07519522745a9",
+      "title": "Workflows Completed",
+      "description": "Total workflows completed by this worker",
+      "visualSettings": "{\"general\": {\"mode\": \"singleValueMetrics\", \"type\": \"svp\"}, \"svp\": {\"option\": \"latest\", \"label\": \"\"}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_workflow_completed_total temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} workflow_type={{workflow_type}} _sourceCategory=springboot-demo | sum",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": "43db1366b52f46c9",
+      "key": "panel6cfa0378c1ea4c94",
+      "title": "Request Failures",
+      "description": "Total failed Temporal SDK client/worker requests",
+      "visualSettings": "{\"general\": {\"mode\": \"singleValueMetrics\", \"type\": \"svp\"}, \"svp\": {\"option\": \"latest\", \"label\": \"\"}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_request_failure_total temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} _sourceCategory=springboot-demo | sum",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": "1bacc9754eda4e9a",
+      "key": "panelce8dc6a3bf8946fb",
+      "title": "Active Workflow Threads",
+      "description": "Currently active workflow threads in the worker",
+      "visualSettings": "{\"general\": {\"mode\": \"singleValueMetrics\", \"type\": \"svp\"}, \"svp\": {\"option\": \"latest\", \"label\": \"\"}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_workflow_active_thread_count temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} _sourceCategory=springboot-demo | sum",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": "9502a3641b834023",
+      "key": "panela5c3d5e1db01495f",
+      "title": "Workflow Completions",
+      "description": "Workflow completion counter over time",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_workflow_completed_total temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} workflow_type={{workflow_type}} _sourceCategory=springboot-demo | sum by namespace,workflow_type,task_queue",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": "1e9471f99ce94908",
+      "key": "panela793647c8f814e4d",
+      "title": "Workflow Task Poll Success",
+      "description": "Successful workflow task queue polls",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_workflow_task_queue_poll_succeed_total temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} _sourceCategory=springboot-demo | sum by task_queue,worker_type",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": "494acb82e11d4790",
+      "key": "panel0d2b405ff0f14ff9",
+      "title": "Workflow Task Poll Empty",
+      "description": "Polls that returned no workflow task",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_workflow_task_queue_poll_empty_total temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} _sourceCategory=springboot-demo | sum by task_queue,worker_type",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": "ece00a2ac19c4b1e",
+      "key": "panel2876656616b849a4",
+      "title": "Workflow End-to-End Latency (avg)",
+      "description": "Average workflow end-to-end latency in seconds",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_workflow_endtoend_latency_seconds_sum temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} workflow_type={{workflow_type}} _sourceCategory=springboot-demo | sum",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryKey": "B",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_workflow_endtoend_latency_seconds_count temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} workflow_type={{workflow_type}} _sourceCategory=springboot-demo | sum",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryKey": "C",
+          "queryType": "Metrics",
+          "queryString": "#A / #B",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": "1653fd05950340ce",
+      "key": "panel19b6a663d7884e67",
+      "title": "Workflow Task Execution Latency (avg)",
+      "description": "Average workflow task execution latency",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_workflow_task_execution_latency_seconds_sum temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} _sourceCategory=springboot-demo | sum",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryKey": "B",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_workflow_task_execution_latency_seconds_count temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} _sourceCategory=springboot-demo | sum",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryKey": "C",
+          "queryType": "Metrics",
+          "queryString": "#A / #B",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": "905041652b394401",
+      "key": "panelcf705a4d35f14dfb",
+      "title": "Workflow Schedule-to-Start Latency (avg)",
+      "description": "Time from task schedule to worker start",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_workflow_task_schedule_to_start_latency_seconds_sum temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} _sourceCategory=springboot-demo | sum",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryKey": "B",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_workflow_task_schedule_to_start_latency_seconds_count temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} _sourceCategory=springboot-demo | sum",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryKey": "C",
+          "queryType": "Metrics",
+          "queryString": "#A / #B",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": "8aa270a5186242a8",
+      "key": "panel7e412130090b4454",
+      "title": "Activity Executions",
+      "description": "Activity execution count (from latency histogram)",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_activity_execution_latency_seconds_count temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} workflow_type={{workflow_type}} _sourceCategory=springboot-demo | sum by activity_type,workflow_type",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": "1730297433e4440a",
+      "key": "panelee92a8cd20974ba6",
+      "title": "Activity Execution Latency (avg)",
+      "description": "Average activity execution time",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_activity_execution_latency_seconds_sum temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} workflow_type={{workflow_type}} _sourceCategory=springboot-demo | sum",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryKey": "B",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_activity_execution_latency_seconds_count temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} workflow_type={{workflow_type}} _sourceCategory=springboot-demo | sum",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryKey": "C",
+          "queryType": "Metrics",
+          "queryString": "#A / #B",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": "51a93887730f4208",
+      "key": "panel27441ef57f9245b8",
+      "title": "Activity Schedule-to-Start Latency (avg)",
+      "description": "Time from activity schedule to execution start",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_activity_schedule_to_start_latency_seconds_sum temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} _sourceCategory=springboot-demo | sum",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryKey": "B",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_activity_schedule_to_start_latency_seconds_count temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} _sourceCategory=springboot-demo | sum",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryKey": "C",
+          "queryType": "Metrics",
+          "queryString": "#A / #B",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": "53c39eb091e542e4",
+      "key": "panel101ada97f0de4f70",
+      "title": "Activity End-to-End Latency (avg)",
+      "description": "Successful activity end-to-end latency",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_activity_succeed_endtoend_latency_seconds_sum temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} workflow_type={{workflow_type}} _sourceCategory=springboot-demo | sum",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryKey": "B",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_activity_succeed_endtoend_latency_seconds_count temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} workflow_type={{workflow_type}} _sourceCategory=springboot-demo | sum",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryKey": "C",
+          "queryType": "Metrics",
+          "queryString": "#A / #B",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": "03d0890f75b1424b",
+      "key": "panelaea5a47f8dec4c1e",
+      "title": "Activity Poll No Task",
+      "description": "Activity polls that found no task",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_activity_poll_no_task_total temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} _sourceCategory=springboot-demo | sum by task_queue,worker_type",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": "4b5b5dced199432f",
+      "key": "panel59caac3e03f84657",
+      "title": "Task Slots Available",
+      "description": "Available worker task execution slots",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_worker_task_slots_available temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} _sourceCategory=springboot-demo | sum by worker_type,task_queue",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": "62c202b10e2e447a",
+      "key": "panel13dad17a2e86443f",
+      "title": "Task Slots Used",
+      "description": "Used worker task execution slots",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_worker_task_slots_used temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} _sourceCategory=springboot-demo | sum by worker_type,task_queue",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": "7046042392f846c8",
+      "key": "panelc5f2c7081e0b40a1",
+      "title": "Slot Utilization",
+      "description": "Ratio of used slots to total capacity",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_worker_task_slots_used temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} _sourceCategory=springboot-demo | sum by worker_type,task_queue",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryKey": "B",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_worker_task_slots_available temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} _sourceCategory=springboot-demo | sum by worker_type,task_queue",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryKey": "C",
+          "queryType": "Metrics",
+          "queryString": "#A / (#A + #B) along worker_type,task_queue",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": "6984cef2c00542f5",
+      "key": "panel4a6c4e458bb84bca",
+      "title": "Pollers",
+      "description": "Number of active pollers",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_num_pollers temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} _sourceCategory=springboot-demo | sum by task_queue,worker_type",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": "02e0f8f673f942ba",
+      "key": "paneld07af96b209a4620",
+      "title": "Poller Starts",
+      "description": "Poller start events",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_poller_start_total temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} _sourceCategory=springboot-demo | sum by task_queue,worker_type",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": "24f4c667f3d54601",
+      "key": "panelcb6c93db0cb64fa9",
+      "title": "Worker Starts",
+      "description": "Worker start events",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_worker_start_total temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} _sourceCategory=springboot-demo | sum by task_queue,worker_type",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": "f820f5a99db84e3e",
+      "key": "panel39e8e168915c49c3",
+      "title": "Requests by Operation",
+      "description": "Temporal SDK RPC requests by operation",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_request_total temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} _sourceCategory=springboot-demo | sum by operation,worker_type",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": "056a055da7fe49da",
+      "key": "panelf1a0d853e5d84f05",
+      "title": "Request Failures by Operation",
+      "description": "Failed requests by operation and status",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_request_failure_total temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} _sourceCategory=springboot-demo | sum by operation,status_code",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": "f88772df95e445cf",
+      "key": "panelf4ff6bcff71843b4",
+      "title": "Request Latency (avg)",
+      "description": "Average Temporal SDK request latency",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_request_latency_seconds_sum temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} _sourceCategory=springboot-demo | sum",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryKey": "B",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_request_latency_seconds_count temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} _sourceCategory=springboot-demo | sum",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryKey": "C",
+          "queryType": "Metrics",
+          "queryString": "#A / #B",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": "d91900dd34bc4940",
+      "key": "panel6d006a0510b74019",
+      "title": "Long Requests",
+      "description": "Long-poll RPC requests",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_long_request_total temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} _sourceCategory=springboot-demo | sum by operation",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": "9da441ad4d074e1d",
+      "key": "panelaf900243fa584c09",
+      "title": "Long Request Latency (avg)",
+      "description": "Average long-poll request latency",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_long_request_latency_seconds_sum temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} _sourceCategory=springboot-demo | sum",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryKey": "B",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_long_request_latency_seconds_count temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} _sourceCategory=springboot-demo | sum",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryKey": "C",
+          "queryType": "Metrics",
+          "queryString": "#A / #B",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": "ff17ffe2fc174789",
+      "key": "panel3a5200298f174f06",
+      "title": "Sticky Cache Hits",
+      "description": "Workflow sticky cache hits",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_sticky_cache_hit_total temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} _sourceCategory=springboot-demo | sum",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": "cb4cf227c81f42d6",
+      "key": "panelc9865648ff4b4968",
+      "title": "Sticky Cache Size",
+      "description": "Current sticky cache size",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_sticky_cache_size temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} _sourceCategory=springboot-demo | sum",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": "857588677ec34e42",
+      "key": "panel435198abf564430d",
+      "title": "Sticky Cache Forced Evictions",
+      "description": "Forced sticky cache evictions",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_sticky_cache_total_forced_eviction_total temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} _sourceCategory=springboot-demo | sum",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    }
+  ],
+  "variables": [
+    {
+      "id": "8ea5fe32677b47b4",
+      "name": "temporal_namespace",
+      "displayName": "Namespace",
+      "defaultValue": "test-100.ihmbh",
+      "sourceDefinition": {
+        "variableSourceType": "CsvVariableSourceDefinition",
+        "values": "test-100.ihmbh,default"
+      },
+      "allowMultiSelect": false,
+      "includeAllOption": false,
+      "hideFromUI": false,
+      "valueType": "Any"
+    },
+    {
+      "id": "4de50059f9004394",
+      "name": "task_queue",
+      "displayName": "Task Queue",
+      "defaultValue": "HELLO_TASK_QUEUE",
+      "sourceDefinition": {
+        "variableSourceType": "CsvVariableSourceDefinition",
+        "values": "HELLO_TASK_QUEUE"
+      },
+      "allowMultiSelect": false,
+      "includeAllOption": false,
+      "hideFromUI": false,
+      "valueType": "Any"
+    },
+    {
+      "id": "984f3c44714c48cc",
+      "name": "workflow_type",
+      "displayName": "Workflow Type",
+      "defaultValue": "HelloWorkflow",
+      "sourceDefinition": {
+        "variableSourceType": "CsvVariableSourceDefinition",
+        "values": "HelloWorkflow"
+      },
+      "allowMultiSelect": false,
+      "includeAllOption": false,
+      "hideFromUI": false,
+      "valueType": "Any"
+    }
+  ],
+  "coloringRules": []
+}

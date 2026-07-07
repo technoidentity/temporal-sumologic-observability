@@ -1,0 +1,1319 @@
+{
+  "type": "DashboardV2SyncDefinition",
+  "name": "Temporal Cloud External Metrics",
+  "description": "Temporal Cloud metrics dashboard - Complete conversion from Grafana with all 43 panels",
+  "title": "Temporal Cloud External Metrics",
+  "theme": "Dark",
+  "topologyLabelMap": {
+    "data": {}
+  },
+  "refreshInterval": 0,
+  "timeRange": {
+    "type": "BeginBoundedTimeRange",
+    "from": {
+      "type": "RelativeTimeRangeBoundary",
+      "relativeTime": "-1h"
+    },
+    "to": null
+  },
+  "layout": {
+    "layoutType": "Grid",
+    "layoutStructures": [
+      {
+        "key": "panel-open-workflows",
+        "structure": "{\"height\":8,\"width\":12,\"x\":0,\"y\":0}"
+      },
+      {
+        "key": "panel-failed-workflows",
+        "structure": "{\"height\":8,\"width\":12,\"x\":12,\"y\":0}"
+      },
+      {
+        "key": "panel-task-backlog",
+        "structure": "{\"height\":8,\"width\":12,\"x\":0,\"y\":8}"
+      },
+      {
+        "key": "panel-sync-match-rate",
+        "structure": "{\"height\":8,\"width\":12,\"x\":12,\"y\":8}"
+      },
+      {
+        "key": "panel-workflow-success",
+        "structure": "{\"height\":8,\"width\":12,\"x\":0,\"y\":16}"
+      },
+      {
+        "key": "panel-workflow-success-by-type",
+        "structure": "{\"height\":8,\"width\":12,\"x\":12,\"y\":16}"
+      },
+      {
+        "key": "panel-workflow-success-by-queue",
+        "structure": "{\"height\":8,\"width\":12,\"x\":0,\"y\":24}"
+      },
+      {
+        "key": "panel-workflow-failed",
+        "structure": "{\"height\":8,\"width\":12,\"x\":12,\"y\":24}"
+      },
+      {
+        "key": "panel-workflow-failed-by-type",
+        "structure": "{\"height\":8,\"width\":12,\"x\":0,\"y\":32}"
+      },
+      {
+        "key": "panel-workflow-failed-by-queue",
+        "structure": "{\"height\":8,\"width\":12,\"x\":12,\"y\":32}"
+      },
+      {
+        "key": "panel-workflow-continued-as-new",
+        "structure": "{\"height\":8,\"width\":12,\"x\":0,\"y\":40}"
+      },
+      {
+        "key": "panel-workflow-continued-as-new-by-type",
+        "structure": "{\"height\":8,\"width\":12,\"x\":12,\"y\":40}"
+      },
+      {
+        "key": "panel-workflow-continued-as-new-by-queue",
+        "structure": "{\"height\":8,\"width\":12,\"x\":0,\"y\":48}"
+      },
+      {
+        "key": "panel-workflow-cancels",
+        "structure": "{\"height\":8,\"width\":12,\"x\":12,\"y\":48}"
+      },
+      {
+        "key": "panel-workflow-cancels-by-type",
+        "structure": "{\"height\":8,\"width\":12,\"x\":0,\"y\":56}"
+      },
+      {
+        "key": "panel-workflow-cancels-by-queue",
+        "structure": "{\"height\":8,\"width\":12,\"x\":12,\"y\":56}"
+      },
+      {
+        "key": "panel-workflow-timeouts",
+        "structure": "{\"height\":8,\"width\":12,\"x\":0,\"y\":64}"
+      },
+      {
+        "key": "panel-workflow-timeouts-by-type",
+        "structure": "{\"height\":8,\"width\":12,\"x\":12,\"y\":64}"
+      },
+      {
+        "key": "panel-workflow-timeouts-by-queue",
+        "structure": "{\"height\":8,\"width\":12,\"x\":0,\"y\":72}"
+      },
+      {
+        "key": "panel-no-poller-tasks",
+        "structure": "{\"height\":8,\"width\":12,\"x\":12,\"y\":72}"
+      },
+      {
+        "key": "panel-poll-success",
+        "structure": "{\"height\":8,\"width\":12,\"x\":0,\"y\":80}"
+      },
+      {
+        "key": "panel-poll-timeout",
+        "structure": "{\"height\":8,\"width\":12,\"x\":12,\"y\":80}"
+      },
+      {
+        "key": "panel-poll-success-sync",
+        "structure": "{\"height\":8,\"width\":12,\"x\":0,\"y\":88}"
+      },
+      {
+        "key": "panel-poll-success-async",
+        "structure": "{\"height\":8,\"width\":12,\"x\":12,\"y\":88}"
+      },
+      {
+        "key": "panel-actions",
+        "structure": "{\"height\":8,\"width\":12,\"x\":0,\"y\":96}"
+      },
+      {
+        "key": "panel-30-days-actions",
+        "structure": "{\"height\":8,\"width\":12,\"x\":12,\"y\":96}"
+      },
+      {
+        "key": "panel-7-days-actions",
+        "structure": "{\"height\":8,\"width\":12,\"x\":0,\"y\":104}"
+      },
+      {
+        "key": "panel-1-day-actions",
+        "structure": "{\"height\":8,\"width\":12,\"x\":12,\"y\":104}"
+      },
+      {
+        "key": "panel-schedule-actions-success",
+        "structure": "{\"height\":8,\"width\":12,\"x\":0,\"y\":112}"
+      },
+      {
+        "key": "panel-schedule-buffer-overruns",
+        "structure": "{\"height\":8,\"width\":12,\"x\":12,\"y\":112}"
+      },
+      {
+        "key": "panel-schedule-missed-catchup",
+        "structure": "{\"height\":8,\"width\":12,\"x\":0,\"y\":120}"
+      },
+      {
+        "key": "panel-schedule-rate-limited",
+        "structure": "{\"height\":8,\"width\":12,\"x\":12,\"y\":120}"
+      },
+      {
+        "key": "panel-requests",
+        "structure": "{\"height\":8,\"width\":12,\"x\":0,\"y\":128}"
+      },
+      {
+        "key": "panel-service-requests-by-operation",
+        "structure": "{\"height\":8,\"width\":12,\"x\":12,\"y\":128}"
+      },
+      {
+        "key": "panel-operations",
+        "structure": "{\"height\":8,\"width\":12,\"x\":0,\"y\":136}"
+      },
+      {
+        "key": "panel-service-requests",
+        "structure": "{\"height\":8,\"width\":12,\"x\":12,\"y\":136}"
+      },
+      {
+        "key": "panel-service-errors",
+        "structure": "{\"height\":8,\"width\":12,\"x\":0,\"y\":144}"
+      },
+      {
+        "key": "panel-service-errors-by-operation",
+        "structure": "{\"height\":8,\"width\":12,\"x\":12,\"y\":144}"
+      },
+      {
+        "key": "panel-resource-exhausted-errors",
+        "structure": "{\"height\":8,\"width\":12,\"x\":0,\"y\":152}"
+      },
+      {
+        "key": "panel-replication-lag",
+        "structure": "{\"height\":8,\"width\":12,\"x\":12,\"y\":152}"
+      },
+      {
+        "key": "panel-start-workflow-latency",
+        "structure": "{\"height\":8,\"width\":12,\"x\":0,\"y\":160}"
+      },
+      {
+        "key": "panel-signal-workflow-latency",
+        "structure": "{\"height\":8,\"width\":12,\"x\":12,\"y\":160}"
+      },
+      {
+        "key": "panel-signal-with-start-latency",
+        "structure": "{\"height\":8,\"width\":12,\"x\":0,\"y\":168}"
+      }
+    ]
+  },
+  "panels": [
+    {
+      "id": null,
+      "key": "panel-open-workflows",
+      "title": "Open Workflows",
+      "visualSettings": "{\"general\": {\"mode\": \"distribution\", \"type\": \"column\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_namespace_open_workflows | sum",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The current number of open workflows",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-failed-workflows",
+      "title": "Failed Workflows",
+      "visualSettings": "{\"general\": {\"mode\": \"table\", \"type\": \"column\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_failed_count | sum by temporal_workflow_type",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The number of failed workflow completions per second by workflow type",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-task-backlog",
+      "title": "Task Backlog",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_approximate_backlog_count | sum by temporal_task_queue",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The approximate number of tasks in the backlog",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-sync-match-rate",
+      "title": "Sync Match Rate",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_poll_success_sync_count | sum by temporal_task_queue",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_poll_success_count | sum by temporal_task_queue",
+          "queryType": "Metrics",
+          "queryKey": "B",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryString": "#A / #B along temporal_task_queue",
+          "queryType": "Metrics",
+          "queryKey": "metricsFormula",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The rate of sync matches per second",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-workflow-success",
+      "title": "Success",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_success_count | sum",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The number of successful workflow completions per second",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-workflow-success-by-type",
+      "title": "Success / Workflow Type",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_success_count | sum by temporal_workflow_type",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The number of successful workflow completions per second by workflow type",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-workflow-success-by-queue",
+      "title": "Success / Task Queue",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_success_count | sum by temporal_task_queue",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The number of successful workflow completions per second by task queue",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-workflow-failed",
+      "title": "Failed",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_failed_count | sum",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The number of failed workflow completions per second",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-workflow-failed-by-type",
+      "title": "Failed / Workflow Type",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_failed_count | sum by temporal_workflow_type",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The number of failed workflow completions per second by workflow type",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-workflow-failed-by-queue",
+      "title": "Failed / Task Queue",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_failed_count | sum by temporal_task_queue",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The number of failed workflow completions per second by task queue",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-workflow-continued-as-new",
+      "title": "Continued as New",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_continued_as_new_count | sum",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The number of continued-as-new workflow completions per second",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-workflow-continued-as-new-by-type",
+      "title": "Continued as New / Workflow Type",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_continued_as_new_count | sum by temporal_workflow_type",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The number of continued-as-new workflow completions per second by workflow type",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-workflow-continued-as-new-by-queue",
+      "title": "Continued as New / Task Queue",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_continued_as_new_count | sum by temporal_task_queue",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The number of continued-as-new workflow completions per second by task queue",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-workflow-cancels",
+      "title": "Cancels",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_cancel_count | sum",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The number of canceled workflow completions per second",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-workflow-cancels-by-type",
+      "title": "Cancels / Workflow Type",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_cancel_count | sum by temporal_workflow_type",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The number of canceled workflow completions per second by workflow type",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-workflow-cancels-by-queue",
+      "title": "Cancels / Task Queue",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_cancel_count | sum by temporal_task_queue",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The number of canceled workflow completions per second by task queue",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-workflow-timeouts",
+      "title": "Timeouts",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_timeout_count | sum",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The number of timed-out workflow completions per second",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-workflow-timeouts-by-type",
+      "title": "Timeouts / Workflow Type",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_timeout_count | sum by temporal_workflow_type",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The number of timed-out workflow completions per second by workflow type",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-workflow-timeouts-by-queue",
+      "title": "Timeouts / Task Queue",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_timeout_count | sum by temporal_task_queue",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The number of timed-out workflow completions per second by task queue",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-no-poller-tasks",
+      "title": "No Poller Tasks",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_no_poller_tasks_count | sum by temporal_task_queue",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The approximate number of tasks in the backlog for task queues with no pollers",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-poll-success",
+      "title": "Poll Success",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_poll_success_count | sum by temporal_task_queue",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The number of successful polls per second",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-poll-timeout",
+      "title": "Poll Timeout",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_poll_timeout_count | sum by temporal_task_queue",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The number of poll timeouts per second",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-poll-success-sync",
+      "title": "Poll Success Sync",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_poll_success_sync_count | sum by temporal_task_queue",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The number of successful sync polls per second",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-poll-success-async",
+      "title": "Poll Success Async",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_poll_success_count | sum by temporal_task_queue",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_poll_success_sync_count | sum by temporal_task_queue",
+          "queryType": "Metrics",
+          "queryKey": "B",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryString": "#A - #B along temporal_task_queue",
+          "queryType": "Metrics",
+          "queryKey": "metricsFormula",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The number of successful async polls per second",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-actions",
+      "title": "Actions",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_total_action_count | sum",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The number of actions per second",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-30-days-actions",
+      "title": "30 Days Actions",
+      "visualSettings": "{\"general\": {\"mode\": \"distribution\", \"type\": \"column\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_total_action_count | sum",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "Total actions in the last 30 days",
+      "timeRange": {
+        "type": "BeginBoundedTimeRange",
+        "from": {
+          "type": "RelativeTimeRangeBoundary",
+          "relativeTime": "-30d"
+        },
+        "to": null
+      },
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-7-days-actions",
+      "title": "7 Days Actions",
+      "visualSettings": "{\"general\": {\"mode\": \"distribution\", \"type\": \"column\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_total_action_count | sum",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "Total actions in the last 7 days",
+      "timeRange": {
+        "type": "BeginBoundedTimeRange",
+        "from": {
+          "type": "RelativeTimeRangeBoundary",
+          "relativeTime": "-7d"
+        },
+        "to": null
+      },
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-1-day-actions",
+      "title": "1 Day Actions",
+      "visualSettings": "{\"general\": {\"mode\": \"distribution\", \"type\": \"column\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_total_action_count | sum",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "Total actions in the last 1 day",
+      "timeRange": {
+        "type": "BeginBoundedTimeRange",
+        "from": {
+          "type": "RelativeTimeRangeBoundary",
+          "relativeTime": "-1d"
+        },
+        "to": null
+      },
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-requests",
+      "title": "Service Requests",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_service_request_count | sum",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The number of service requests per second",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-operations",
+      "title": "Operations",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_operations_count | sum",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_operations_throttled_count | sum",
+          "queryType": "Metrics",
+          "queryKey": "B",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The number of operations and throttled operations per second against the current limit",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-schedule-actions-success",
+      "title": "Successful Schedule Actions",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_schedule_action_success_count | sum",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The number of successful schedule actions per second",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-schedule-buffer-overruns",
+      "title": "Schedule Buffer Overruns",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_schedule_buffer_overruns_count | sum",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The number of schedule buffer overruns per second",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-schedule-missed-catchup",
+      "title": "Schedule Missed Catchup Windows",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_schedule_missed_catchup_window_count | sum",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The number of schedule missed catchup windows per second",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-schedule-rate-limited",
+      "title": "Schedules Rate Limited",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_schedule_rate_limited_count | sum",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The number of schedules rate limited per second",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-service-requests",
+      "title": "Frontend Requests",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_service_request_count | sum",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The number of service requests per second",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-service-requests-by-operation",
+      "title": "Frontend Service Requests / Operation",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_service_request_count | sum by operation",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The number of service requests per second by operation",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-service-errors",
+      "title": "Frontend Service Errors",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_service_error_count | sum",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The number of service errors per second",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-service-errors-by-operation",
+      "title": "Frontend Service Errors / Operation",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_service_error_count | sum by operation",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The number of service errors per second by operation",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-resource-exhausted-errors",
+      "title": "Resource Exhausted Errors",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_resource_exhausted_error_count | sum",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The number of resource exhausted errors per second",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-replication-lag",
+      "title": "Replication Lag",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_replication_lag | quantize to 1m using avg",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The replication lag in seconds",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-start-workflow-latency",
+      "title": "StartWorkflowExecution Latency",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} operation=StartWorkflowExecution metric=temporal_cloud_v1_service_latency_p50 or metric=temporal_cloud_v1_service_latency_p95 or metric=temporal_cloud_v1_service_latency_p99",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The percentile latencies for StartWorkflowExecution operations",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-signal-workflow-latency",
+      "title": "SignalWorkflowExecution Latency",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} operation=SignalWorkflowExecution metric=temporal_cloud_v1_service_latency_p50 or metric=temporal_cloud_v1_service_latency_p95 or metric=temporal_cloud_v1_service_latency_p99",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The percentile latencies for SignalWorkflowExecution operations",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-signal-with-start-latency",
+      "title": "SignalWithStartWorkflowExecution Latency",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} operation=SignalWithStartWorkflowExecution metric=temporal_cloud_v1_service_latency_p50 or metric=temporal_cloud_v1_service_latency_p95 or metric=temporal_cloud_v1_service_latency_p99",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "The percentile latencies for SignalWithStartWorkflowExecution operations",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    }
+  ],
+  "filters": [],
+  "coloringRules": [],
+  "variables": [
+    {
+      "id": null,
+      "name": "temporal_namespace",
+      "displayName": "Temporal Namespace",
+      "defaultValue": "test-100.ihmbh",
+      "sourceDefinition": {
+        "variableSourceType": "MetadataVariableSourceDefinition",
+        "filter": "metric=temporal_cloud_v1_service_request_count",
+        "key": "temporal_namespace"
+      },
+      "allowMultiSelect": false,
+      "includeAllOption": true,
+      "hideFromUI": false
+    }
+  ]
+}

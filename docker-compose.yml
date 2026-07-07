@@ -1,0 +1,49 @@
+services:
+  springboot-app:
+    build: .
+    container_name: springboot-app
+    ports:
+      - "8080:8080"
+    # Connection values are read directly from .env 
+    env_file:
+      - path: .env
+        required: false
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    depends_on:
+      - temporal
+
+  temporal:
+    image: temporalio/temporal:latest
+    container_name: temporal
+    command: server start-dev --ip 0.0.0.0
+    ports:
+      - "7233:7233"
+      - "8233:8233"
+
+  sumologic-otel-collector:
+    image: public.ecr.aws/sumologic/sumologic-otel-collector:latest
+    container_name: sumologic-otel-collector
+    user: "0:0"
+    # SUMOLOGIC_INSTALLATION_TOKEN, TEMPORAL_CLOUD_METRICS_API_KEY, etc. are read from .env.
+    env_file:
+      - path: .env
+        required: false
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    command:
+      - --config
+      - /etc/otel/config.yaml
+    volumes:
+      - ./otel-collector-config.yaml:/etc/otel/config.yaml:ro
+      - /var/lib/otelcol-sumo/file_storage:/var/lib/otelcol-sumo/file_storage
+      - /var/lib/otelcol-sumo/credentials:/etc/otel/.sumologic-otel-collector
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+    depends_on:
+      - springboot-app
+
+
+
+      

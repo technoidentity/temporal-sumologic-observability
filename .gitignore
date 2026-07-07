@@ -1,0 +1,8 @@
+# Secrets / local env
+.env
+
+# IDE
+.vscode/
+
+# Build output
+target/
