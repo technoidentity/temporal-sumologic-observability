@@ -1,7 +1,7 @@
 {
   "type": "DashboardV2SyncDefinition",
   "name": "Temporal Cloud External Metrics",
-  "description": "Temporal Cloud metrics dashboard - Complete conversion from Grafana with all 43 panels",
+  "description": "Temporal Cloud metrics dashboard converted from Temporal's OpenMetrics Grafana dashboard",
   "title": "Temporal Cloud External Metrics",
   "theme": "Dark",
   "topologyLabelMap": {
@@ -190,6 +190,14 @@
       {
         "key": "panel-signal-with-start-latency",
         "structure": "{\"height\":8,\"width\":12,\"x\":0,\"y\":168}"
+      },
+      {
+        "key": "panel-action-limit",
+        "structure": "{\"height\":8,\"width\":12,\"x\":12,\"y\":168}"
+      },
+      {
+        "key": "panel-service-request-limit",
+        "structure": "{\"height\":8,\"width\":12,\"x\":0,\"y\":176}"
       }
     ]
   },
@@ -203,7 +211,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_namespace_open_workflows | sum",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_namespace_open_workflows | sum",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -227,7 +235,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_failed_count | sum by temporal_workflow_type",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_failed_count | sum by temporal_workflow_type",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -251,7 +259,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_approximate_backlog_count | sum by temporal_task_queue",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_approximate_backlog_count | sum by temporal_task_queue",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -275,7 +283,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_poll_success_sync_count | sum by temporal_task_queue",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_poll_success_sync_count | sum by temporal_task_queue",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -285,7 +293,7 @@
           "timeSource": "Message"
         },
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_poll_success_count | sum by temporal_task_queue",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_poll_success_count | sum by temporal_task_queue",
           "queryType": "Metrics",
           "queryKey": "B",
           "metricsQueryMode": "Advanced",
@@ -319,7 +327,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_success_count | sum",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_success_count | sum",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -343,7 +351,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_success_count | sum by temporal_workflow_type",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_success_count | sum by temporal_workflow_type",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -367,7 +375,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_success_count | sum by temporal_task_queue",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_success_count | sum by temporal_task_queue",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -391,7 +399,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_failed_count | sum",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_failed_count | sum",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -415,7 +423,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_failed_count | sum by temporal_workflow_type",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_failed_count | sum by temporal_workflow_type",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -439,7 +447,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_failed_count | sum by temporal_task_queue",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_failed_count | sum by temporal_task_queue",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -463,7 +471,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_continued_as_new_count | sum",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_continued_as_new_count | sum",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -487,7 +495,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_continued_as_new_count | sum by temporal_workflow_type",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_continued_as_new_count | sum by temporal_workflow_type",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -511,7 +519,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_continued_as_new_count | sum by temporal_task_queue",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_continued_as_new_count | sum by temporal_task_queue",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -535,7 +543,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_cancel_count | sum",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_cancel_count | sum",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -559,7 +567,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_cancel_count | sum by temporal_workflow_type",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_cancel_count | sum by temporal_workflow_type",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -583,7 +591,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_cancel_count | sum by temporal_task_queue",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_cancel_count | sum by temporal_task_queue",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -607,7 +615,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_timeout_count | sum",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_timeout_count | sum",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -631,7 +639,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_timeout_count | sum by temporal_workflow_type",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_timeout_count | sum by temporal_workflow_type",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -655,7 +663,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_timeout_count | sum by temporal_task_queue",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_workflow_timeout_count | sum by temporal_task_queue",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -679,7 +687,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_no_poller_tasks_count | sum by temporal_task_queue",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_no_poller_tasks_count | sum by temporal_task_queue",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -703,7 +711,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_poll_success_count | sum by temporal_task_queue",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_poll_success_count | sum by temporal_task_queue",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -727,7 +735,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_poll_timeout_count | sum by temporal_task_queue",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_poll_timeout_count | sum by temporal_task_queue",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -751,7 +759,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_poll_success_sync_count | sum by temporal_task_queue",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_poll_success_sync_count | sum by temporal_task_queue",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -775,7 +783,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_poll_success_count | sum by temporal_task_queue",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_poll_success_count | sum by temporal_task_queue",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -785,7 +793,7 @@
           "timeSource": "Message"
         },
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_poll_success_sync_count | sum by temporal_task_queue",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_poll_success_sync_count | sum by temporal_task_queue",
           "queryType": "Metrics",
           "queryKey": "B",
           "metricsQueryMode": "Advanced",
@@ -819,7 +827,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_total_action_count | sum",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_total_action_count | sum",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -836,6 +844,30 @@
     },
     {
       "id": null,
+      "key": "panel-action-limit",
+      "title": "Action Limit",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_action_limit | max",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "Temporal Cloud namespace action limit",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
       "key": "panel-30-days-actions",
       "title": "30 Days Actions",
       "visualSettings": "{\"general\": {\"mode\": \"distribution\", \"type\": \"column\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
@@ -843,7 +875,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_total_action_count | sum",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_total_action_count | sum",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -874,7 +906,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_total_action_count | sum",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_total_action_count | sum",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -905,7 +937,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_total_action_count | sum",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_total_action_count | sum",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -936,7 +968,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_service_request_count | sum",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_service_request_count | sum",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -953,6 +985,30 @@
     },
     {
       "id": null,
+      "key": "panel-service-request-limit",
+      "title": "Service Request Limit",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_service_request_limit | max",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "Temporal Cloud namespace service request limit",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
       "key": "panel-operations",
       "title": "Operations",
       "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
@@ -960,7 +1016,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_operations_count | sum",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_operations_count | sum",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -970,7 +1026,7 @@
           "timeSource": "Message"
         },
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_operations_throttled_count | sum",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_operations_throttled_count | sum",
           "queryType": "Metrics",
           "queryKey": "B",
           "metricsQueryMode": "Advanced",
@@ -994,7 +1050,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_schedule_action_success_count | sum",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_schedule_action_success_count | sum",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -1018,7 +1074,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_schedule_buffer_overruns_count | sum",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_schedule_buffer_overruns_count | sum",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -1042,7 +1098,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_schedule_missed_catchup_window_count | sum",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_schedule_missed_catchup_window_count | sum",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -1066,7 +1122,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_schedule_rate_limited_count | sum",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_schedule_rate_limited_count | sum",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -1090,7 +1146,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_service_request_count | sum",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_service_request_count | sum",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -1114,7 +1170,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_service_request_count | sum by operation",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_service_request_count | sum by operation",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -1138,7 +1194,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_service_error_count | sum",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_service_error_count | sum",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -1162,7 +1218,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_service_error_count | sum by operation",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_service_error_count | sum by operation",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -1186,7 +1242,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_resource_exhausted_error_count | sum",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_resource_exhausted_error_count | sum",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -1210,9 +1266,29 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_replication_lag | quantize to 1m using avg",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_replication_lag_p50 | quantize to 1m using avg",
           "queryType": "Metrics",
           "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_replication_lag_p95 | quantize to 1m using avg",
+          "queryType": "Metrics",
+          "queryKey": "B",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_replication_lag_p99 | quantize to 1m using avg",
+          "queryType": "Metrics",
+          "queryKey": "C",
           "metricsQueryMode": "Advanced",
           "metricsQueryData": null,
           "tracesQueryData": null,
@@ -1234,9 +1310,29 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} operation=StartWorkflowExecution metric=temporal_cloud_v1_service_latency_p50 or metric=temporal_cloud_v1_service_latency_p95 or metric=temporal_cloud_v1_service_latency_p99",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} operation=StartWorkflowExecution metric=temporal_cloud_v1_service_latency_p50",
           "queryType": "Metrics",
           "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} operation=StartWorkflowExecution metric=temporal_cloud_v1_service_latency_p95",
+          "queryType": "Metrics",
+          "queryKey": "B",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} operation=StartWorkflowExecution metric=temporal_cloud_v1_service_latency_p99",
+          "queryType": "Metrics",
+          "queryKey": "C",
           "metricsQueryMode": "Advanced",
           "metricsQueryData": null,
           "tracesQueryData": null,
@@ -1258,9 +1354,29 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} operation=SignalWorkflowExecution metric=temporal_cloud_v1_service_latency_p50 or metric=temporal_cloud_v1_service_latency_p95 or metric=temporal_cloud_v1_service_latency_p99",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} operation=SignalWorkflowExecution metric=temporal_cloud_v1_service_latency_p50",
           "queryType": "Metrics",
           "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} operation=SignalWorkflowExecution metric=temporal_cloud_v1_service_latency_p95",
+          "queryType": "Metrics",
+          "queryKey": "B",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} operation=SignalWorkflowExecution metric=temporal_cloud_v1_service_latency_p99",
+          "queryType": "Metrics",
+          "queryKey": "C",
           "metricsQueryMode": "Advanced",
           "metricsQueryData": null,
           "tracesQueryData": null,
@@ -1282,9 +1398,29 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "_sourceCategory=temporal-cloud-metrics temporal_namespace={{temporal_namespace}} operation=SignalWithStartWorkflowExecution metric=temporal_cloud_v1_service_latency_p50 or metric=temporal_cloud_v1_service_latency_p95 or metric=temporal_cloud_v1_service_latency_p99",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} operation=SignalWithStartWorkflowExecution metric=temporal_cloud_v1_service_latency_p50",
           "queryType": "Metrics",
           "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} operation=SignalWithStartWorkflowExecution metric=temporal_cloud_v1_service_latency_p95",
+          "queryType": "Metrics",
+          "queryKey": "B",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} operation=SignalWithStartWorkflowExecution metric=temporal_cloud_v1_service_latency_p99",
+          "queryType": "Metrics",
+          "queryKey": "C",
           "metricsQueryMode": "Advanced",
           "metricsQueryData": null,
           "tracesQueryData": null,
@@ -1303,9 +1439,22 @@
   "variables": [
     {
       "id": null,
+      "name": "cloud_service",
+      "displayName": "Cloud Service",
+      "defaultValue": "temporal-cloud",
+      "sourceDefinition": {
+        "variableSourceType": "CsvVariableSourceDefinition",
+        "values": "temporal-cloud,*"
+      },
+      "allowMultiSelect": false,
+      "includeAllOption": false,
+      "hideFromUI": false
+    },
+    {
+      "id": null,
       "name": "temporal_namespace",
       "displayName": "Temporal Namespace",
-      "defaultValue": "test-100.ihmbh",
+      "defaultValue": "replace-with-temporal-namespace",
       "sourceDefinition": {
         "variableSourceType": "MetadataVariableSourceDefinition",
         "filter": "metric=temporal_cloud_v1_service_request_count",

@@ -1,16 +1,24 @@
 services:
   springboot-app:
-    build: .
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
     container_name: springboot-app
     ports:
       - "8080:8080"
-    # Connection values are read directly from .env 
+    # Connection values are read from .env when present.
+    # In Compose, the local Temporal service is reachable as temporal:7233,
+    # not localhost:7233.
     env_file:
-      - path: .env
+      - path: ../.env
         required: false
-    dns:
-      - 8.8.8.8
-      - 8.8.4.4
+    environment:
+      SERVICE_NAME: ${SERVICE_NAME:-temporal-java-sumo-observability}
+      DEPLOYMENT_ENVIRONMENT: ${DEPLOYMENT_ENVIRONMENT:-docker-local}
+      TEMPORAL_TARGET: ${TEMPORAL_TARGET:-temporal:7233}
+      TEMPORAL_NAMESPACE: ${TEMPORAL_NAMESPACE:-default}
+      TEMPORAL_TASK_QUEUE: ${TEMPORAL_TASK_QUEUE:-HELLO_TASK_QUEUE}
+      TEMPORAL_API_KEY: ${TEMPORAL_API_KEY:-}
     depends_on:
       - temporal
 
@@ -28,11 +36,8 @@ services:
     user: "0:0"
     # SUMOLOGIC_INSTALLATION_TOKEN, TEMPORAL_CLOUD_METRICS_API_KEY, etc. are read from .env.
     env_file:
-      - path: .env
+      - path: ../.env
         required: false
-    dns:
-      - 8.8.8.8
-      - 8.8.4.4
     command:
       - --config
       - /etc/otel/config.yaml

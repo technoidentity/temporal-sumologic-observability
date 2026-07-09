@@ -33,7 +33,7 @@ receivers:
             - targets: ["springboot-app:8080"]
           relabel_configs:
             - target_label: _sourceCategory
-              replacement: springboot-demo
+              replacement: temporal-java-worker
           metric_relabel_configs:
             - source_labels: [namespace]
               regex: (.+)
@@ -46,8 +46,8 @@ receivers:
           scheme: https
           metrics_path: /v1/metrics
           honor_timestamps: true
-          scrape_interval: 15s
-          scrape_timeout: 15s
+          scrape_interval: 30s
+          scrape_timeout: 10s
           authorization:
             type: Bearer
             credentials: ${env:TEMPORAL_CLOUD_METRICS_API_KEY}
@@ -57,8 +57,8 @@ receivers:
           static_configs:
             - targets: ["metrics.temporal.io"]
           relabel_configs:
-            - target_label: _sourceCategory
-              replacement: temporal-cloud-metrics
+            - target_label: service
+              replacement: temporal-cloud
 
 processors:
   batch:
@@ -66,7 +66,7 @@ processors:
   resource/logs:
     attributes:
       - key: _sourceCategory
-        value: springboot-demo
+        value: temporal-java-worker
         action: upsert
       - key: _sourceName
         value: springboot-app
