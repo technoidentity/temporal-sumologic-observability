@@ -1,8 +1,23 @@
 # Secrets / local env
 .env
+.env.*
+!.env.example
 
 # IDE
 .vscode/
 
 # Build output
 target/
+
+# Terraform local state / generated files
+**/.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+terraform.tfvars
+terraform.tfvars.json

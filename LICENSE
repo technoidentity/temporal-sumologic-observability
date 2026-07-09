@@ -1,0 +1,11 @@
+Internal Evaluation License
+
+Copyright (c) TechnoIdentity and its licensors.
+
+This repository is provided for internal evaluation and customer-readiness review only.
+No right is granted to publish, sublicense, sell, redistribute, or use this material in
+production without written approval from the repository owner.
+
+Secrets, customer identifiers, tenant identifiers, account identifiers, and generated
+validation artifacts must not be committed to this repository.
+

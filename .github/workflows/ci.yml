@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: maven
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Maven test
+        run: mvn -B test
+
+      - name: Validate dashboard JSON
+        run: |
+          python3 -m json.tool dashboards/sumo/worker-sdk/worker-metrics-dashboard.json >/tmp/worker-dashboard.json
+          python3 -m json.tool dashboards/sumo/temporal-cloud/temporal-cloud-metrics-dashboard.json >/tmp/cloud-dashboard.json
+
+      - name: Validate YAML syntax
+        run: |
+          ruby -e 'require "yaml"; ARGV.each { |file| YAML.load_file(file); puts "validated #{file}" }' \
+            $(find .github docker k8s sumo iac -path "*/.terraform/*" -prune -o -type f \( -name "*.yaml" -o -name "*.yml" \) -print | sort)
+
+      - name: Validate Docker Compose config
+        run: docker compose -f docker/docker-compose.yml config >/tmp/docker-compose-rendered.yaml
+
+      - name: Validate Terraform
+        run: |
+          terraform -chdir=iac/terraform/eks fmt -check
+          terraform -chdir=iac/terraform/eks init -backend=false
+          terraform -chdir=iac/terraform/eks validate
