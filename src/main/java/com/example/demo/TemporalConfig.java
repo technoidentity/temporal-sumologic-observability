@@ -5,6 +5,8 @@ import com.uber.m3.tally.Scope;
 import io.micrometer.core.instrument.MeterRegistry;
 import io.temporal.client.WorkflowClient;
 import io.temporal.client.WorkflowClientOptions;
+import io.temporal.client.schedules.ScheduleClient;
+import io.temporal.client.schedules.ScheduleClientOptions;
 import io.temporal.common.reporter.MicrometerClientStatsReporter;
 import io.temporal.serviceclient.WorkflowServiceStubs;
 import io.temporal.serviceclient.WorkflowServiceStubsOptions;
@@ -21,13 +23,14 @@ public class TemporalConfig {
 
   private static final Logger log = LoggerFactory.getLogger(TemporalConfig.class);
 
-  public static final String TASK_QUEUE = "HELLO_TASK_QUEUE";
-
   @Value("${temporal.target:localhost:7233}")
   private String temporalTarget;
 
   @Value("${temporal.namespace:default}")
   private String temporalNamespace;
+
+  @Value("${temporal.task-queue:HELLO_TASK_QUEUE}")
+  private String temporalTaskQueue;
 
   // When set (e.g. for Temporal Cloud), the worker authenticates with this API key over TLS.
   // Leave empty for a local/unsecured dev server.
@@ -76,14 +79,21 @@ public class TemporalConfig {
         WorkflowClientOptions.newBuilder().setNamespace(temporalNamespace).build());
   }
 
+  @Bean
+  public ScheduleClient scheduleClient(WorkflowServiceStubs serviceStubs) {
+    return ScheduleClient.newInstance(
+        serviceStubs,
+        ScheduleClientOptions.newBuilder().setNamespace(temporalNamespace).build());
+  }
+
   @Bean(destroyMethod = "shutdown")
   public WorkerFactory workerFactory(WorkflowClient workflowClient) {
     WorkerFactory factory = WorkerFactory.newInstance(workflowClient);
-    Worker worker = factory.newWorker(TASK_QUEUE);
+    Worker worker = factory.newWorker(temporalTaskQueue);
     worker.registerWorkflowImplementationTypes(HelloWorkflowImpl.class);
     worker.registerActivitiesImplementations(new HelloActivitiesImpl());
     factory.start();
-    log.info("Temporal worker started, polling task queue={}", TASK_QUEUE);
+    log.info("Temporal worker started, polling task queue={}", temporalTaskQueue);
     return factory;
   }
 }
