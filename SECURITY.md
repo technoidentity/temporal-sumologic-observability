@@ -6,7 +6,7 @@ This repository is an evaluation sample, not a production deployment package.
 
 ## Sensitive Data Rules
 
-- Do not commit Sumo Logic access IDs, access keys, installation tokens, or API keys.
+- Do not commit Sumo Logic access IDs, access keys, source endpoints, or API keys.
 - Do not commit Temporal Cloud API keys, metrics API keys, namespace-specific secrets, or TLS material.
 - Do not commit AWS credentials, Terraform state, kubeconfig files, or filled `terraform.tfvars`.
 - Do not commit screenshots or exported evidence that expose customer, tenant, account, namespace, or workflow payload data.
@@ -27,4 +27,3 @@ Before adapting this sample for production, review:
 - monitor routing and incident ownership;
 - retention and compliance requirements;
 - Terraform state storage and access controls.
-

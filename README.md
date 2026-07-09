@@ -3,7 +3,7 @@
 This repository is organized around two paths:
 
 1. EKS path: production-style evaluation using Sumo Logic Kubernetes Collection installed by Helm.
-2. Docker path: local validation of the Java SDK metrics, logs, dashboards, and optional Temporal Cloud metrics.
+2. Docker path: local reproducibility and debugging for the Java SDK metrics, logs, dashboards, and Temporal Cloud metrics.
 
 The EKS path is the recommended production-style evaluation path. Docker is retained so the code and dashboards can be tested before touching AWS or Sumo accounts.
 
@@ -20,8 +20,7 @@ Repository: `git@github.com:technoidentity/temporal-sumologic-observability.git`
 | Dashboards | Included | Importable Sumo dashboard JSON under `dashboards/sumo/`. |
 | Scenario drivers | Implemented for validation | HTTP endpoints under `/temporal/scenarios/*` populate success, failure, timeout, cancel, terminate, backlog, schedule, and load panels. |
 | CI readiness | Included | GitHub Actions workflow validates Maven tests, dashboard JSON, YAML syntax, Docker Compose config, and Terraform formatting/validation. |
-| Traces | Not implemented | Add OpenTelemetry Java instrumentation before claiming trace coverage. |
-| Alerts and monitors | Not implemented | Add Sumo monitors after thresholds and routing are agreed. |
+| Alerts and monitors | Specification included | `sumo/production-monitor-specification.md` defines query logic, starting thresholds, recovery, grouping, ownership, and validation. Environment-specific Sumo monitor resources remain to be created after the target organization approves routing and thresholds. |
 
 ## Repository Layout
 
@@ -52,6 +51,7 @@ Repository: `git@github.com:technoidentity/temporal-sumologic-observability.git`
 |- sumo/
 |  |- kubernetes-collection-values.example.yaml
 |  |- metric-field-mapping.md
+|  |- production-monitor-specification.md
 |  |- validation-queries.md
 |  |- temporal-cloud-otel-collector.yaml
 |  |- temporal-cloud-otel-collector-secret-template.yaml
@@ -123,9 +123,9 @@ helm upgrade --install sumologic sumologic/sumologic \
 
 Do not commit Sumo credentials or a filled private values file.
 
-### 3. Optional: Deploy Temporal Cloud Metrics Scrape
+### 3. Deploy Temporal Cloud Metrics Scrape
 
-Use this only when Temporal Cloud service-side metrics are in scope. The Sumo Kubernetes Collection chart does not automatically scrape `metrics.temporal.io`; this repo uses a small dedicated collector in the `sumologic` namespace and exports to the Helm chart's existing OTLP metrics source.
+Include Temporal Cloud service-side metrics in the reference architecture. The Sumo Kubernetes Collection chart does not automatically scrape `metrics.temporal.io`; this repo uses a small dedicated collector in the `sumologic` namespace and exports to the Helm chart's existing OTLP metrics source.
 
 ```bash
 kubectl -n sumologic create secret generic temporal-cloud-otel-collector-secrets \
@@ -230,13 +230,18 @@ Validate these values in the target Sumo account before publishing dashboards to
 | Activity execution | `temporal_activity_execution_latency_seconds_*` |
 | Activity pickup delay | `temporal_activity_schedule_to_start_latency_seconds_*` |
 | Worker saturation | `temporal_worker_task_slots_used`, `temporal_worker_task_slots_available` |
-| Poller health | `temporal_num_pollers`, `temporal_poller_start_total` |
+| Worker lifecycle | `temporal_worker_start_total`, `temporal_poller_start_total`, `temporal_worker_task_slots_available` |
 | SDK failures | `temporal_request_failure_total`, `temporal_request_latency_seconds_*` |
+| Workflow task failures | `temporal_workflow_task_execution_failed_total` |
+| Activity failures | `temporal_activity_execution_failed_total`, `temporal_local_activity_execution_failed_total` when local activities are used |
 | Sticky cache | `temporal_sticky_cache_hit_total`, `temporal_sticky_cache_size`, `temporal_sticky_cache_total_forced_eviction_total` |
 | Temporal Cloud backlog | `temporal_cloud_v1_approximate_backlog_count`, `temporal_cloud_v1_no_poller_tasks_count` |
-| Temporal Cloud service health | `temporal_cloud_v1_service_request_count`, `temporal_cloud_v1_service_error_count`, `temporal_cloud_v1_resource_exhausted_error_count` |
+| Temporal Cloud service health | `temporal_cloud_v1_service_request_count`, `temporal_cloud_v1_service_error_count`, `temporal_cloud_v1_service_latency_p95` |
+| Temporal Cloud throttling | `temporal_cloud_v1_service_request_throttled_count`, `temporal_cloud_v1_operations_throttled_count`, `temporal_cloud_v1_total_action_throttled_count`, `temporal_cloud_v1_resource_exhausted_error_count` |
 | Temporal Cloud limits | `temporal_cloud_v1_action_limit`, `temporal_cloud_v1_service_request_limit` |
 | Temporal Cloud schedules | `temporal_cloud_v1_schedule_action_success_count`, `temporal_cloud_v1_schedule_buffer_overruns_count`, `temporal_cloud_v1_schedule_missed_catchup_window_count`, `temporal_cloud_v1_schedule_rate_limited_count` |
+
+The Java SDK does not emit `temporal_num_pollers`. Do not use that metric for a Java worker-availability dashboard or monitor. Determine worker availability from Kubernetes readiness/replica state and corroborate it with Temporal Cloud no-poller tasks and backlog. `temporal_poller_start_total` is a lifecycle counter, not a current-poller gauge.
 
 ## Configuration
 
@@ -250,11 +255,13 @@ cp .env.example .env
 |---|---|
 | `SERVICE_NAME` | App/service identity used in Spring and metrics tags. |
 | `DEPLOYMENT_ENVIRONMENT` | `docker-local`, `eks`, or another environment label. |
-| `SUMOLOGIC_INSTALLATION_TOKEN` | Docker collector installation token. Not used by the EKS Helm chart or EKS Temporal Cloud collector. |
+| `SUMO_ACCESS_ID` | Sumo Access ID used by the Helm and API validation paths. |
+| `SUMO_ACCESS_KEY` | Sumo Access Key used by the Helm and API validation paths. |
+| `SUMOLOGIC_OTLP_SOURCE_ENDPOINT` | Existing Sumo OTLP HTTP source endpoint used by the optional local Docker exporter. |
 | `TEMPORAL_TARGET` | Temporal frontend address. |
 | `TEMPORAL_NAMESPACE` | Temporal namespace. |
 | `TEMPORAL_TASK_QUEUE` | Worker and workflow task queue. |
-| `TEMPORAL_API_KEY` | Optional Temporal Cloud worker/client API key. |
+| `TEMPORAL_API_KEY` | Temporal Cloud worker/client API key when the worker connects to Temporal Cloud. |
 | `TEMPORAL_CLOUD_METRICS_API_KEY` | Temporal Cloud Metrics Read-Only key for `temporal_cloud_v1_*` dashboard validation. |
 
 ## Verification

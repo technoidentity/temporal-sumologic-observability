@@ -9,7 +9,7 @@ It does not install Sumo Logic or create AWS infrastructure.
 |---|---|
 | `namespace.yaml` | Creates the `temporal-observability` namespace and sets a Sumo source category annotation. |
 | `configmap.yaml` | Holds non-secret runtime settings for Temporal target, namespace, task queue, and app identity. |
-| `secret-template.yaml` | Template for optional Temporal Cloud API key. Do not commit a filled version. |
+| `secret-template.yaml` | Template for the Temporal Cloud worker API key used in Cloud validation. Do not commit a filled version. |
 | `deployment.yaml` | Runs the Spring Boot Temporal worker and exposes `/actuator/prometheus`. |
 | `service.yaml` | Provides an internal ClusterIP service for app access. |
 
@@ -17,7 +17,7 @@ It does not install Sumo Logic or create AWS infrastructure.
 
 1. Replace the image in `deployment.yaml` with an image you pushed to ECR.
 2. Replace `TEMPORAL_TARGET`, `TEMPORAL_NAMESPACE`, and `TEMPORAL_TASK_QUEUE` in `configmap.yaml`.
-3. Use `secret-template.yaml` only if the app connects to Temporal Cloud with API-key auth.
+3. Create the worker API-key secret from `secret-template.yaml` when validating against Temporal Cloud; use the customer-approved secret manager for shared environments.
 4. Confirm the namespace and source category names match the Sumo dashboard variables.
 
 For EKS nodes running `linux/amd64`, build and push an amd64 image explicitly from Apple silicon machines:

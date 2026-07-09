@@ -649,28 +649,6 @@
       "coloringRules": []
     },
     {
-      "key": "panel4a6c4e458bb84bca",
-      "title": "Pollers",
-      "description": "Number of active pollers",
-      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
-      "keepVisualSettingsConsistentWithParent": true,
-      "panelType": "SumoSearchPanel",
-      "queries": [
-        {
-          "queryKey": "A",
-          "queryType": "Metrics",
-          "queryString": "metric=temporal_num_pollers temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} service={{service}} | sum by task_queue,worker_type",
-          "metricsQueryMode": "Advanced",
-          "metricsQueryData": null,
-          "tracesQueryData": null,
-          "parseMode": "Auto",
-          "timeSource": "Message"
-        }
-      ],
-      "timeRange": null,
-      "coloringRules": []
-    },
-    {
       "key": "paneld07af96b209a4620",
       "title": "Poller Starts",
       "description": "Poller start events",

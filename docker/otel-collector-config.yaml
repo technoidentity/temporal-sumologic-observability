@@ -1,12 +1,9 @@
 exporters:
   sumologic:
+    endpoint: ${env:SUMOLOGIC_OTLP_SOURCE_ENDPOINT}
     sending_queue:
       enabled: true
     decompose_otlp_histograms: true
-
-extensions:
-  sumologic:
-    installation_token: ${env:SUMOLOGIC_INSTALLATION_TOKEN}
 
 receivers:
   file_log:
@@ -73,7 +70,6 @@ processors:
         action: upsert
 
 service:
-  extensions: [sumologic]
   pipelines:
     logs:
       receivers: [file_log]

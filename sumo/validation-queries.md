@@ -8,6 +8,8 @@ Use `docs/dashboard-scenario-drivers.md` to generate success, failure, timeout, 
 
 ## Worker SDK Metrics
 
+Java worker availability is not represented by `temporal_num_pollers`; that metric is not emitted by the Java SDK. Validate current availability through Kubernetes readiness/replica metrics, then use the following Temporal metrics for capacity and failure drill-down.
+
 ```text
 metric=temporal_workflow_completed_total service=temporal-java-sumo-observability temporal_namespace=<namespace>
 ```
@@ -18,6 +20,18 @@ metric=temporal_worker_task_slots_available service=temporal-java-sumo-observabi
 
 ```text
 metric=temporal_activity_execution_latency_seconds_count service=temporal-java-sumo-observability temporal_namespace=<namespace>
+```
+
+```text
+metric=temporal_workflow_task_execution_failed_total service=temporal-java-sumo-observability temporal_namespace=<namespace> | sum by workflow_type,task_queue
+```
+
+```text
+metric=temporal_activity_execution_failed_total service=temporal-java-sumo-observability temporal_namespace=<namespace> | sum by activity_type,task_queue
+```
+
+```text
+metric=temporal_worker_start_total service=temporal-java-sumo-observability temporal_namespace=<namespace> | sum by task_queue,worker_type
 ```
 
 The worker dashboard intentionally calculates average latency from `_sum` and `_count` series. Temporal's published Prometheus/Grafana SDK dashboard uses histogram `_bucket` series for percentile panels, but the validated Sumo OTLP path for this repo did not ingest worker `_bucket` metrics.
@@ -50,7 +64,7 @@ metric=temporal_workflow_completed_total service=temporal-java-sumo-observabilit
 
 ## Temporal Cloud Metrics
 
-Only use these if a Temporal Cloud metrics scrape is configured:
+Use these after the Temporal Cloud metrics scrape is configured:
 
 ```text
 service=temporal-cloud temporal_namespace=<namespace> metric=temporal_cloud_v1_workflow_success_count
@@ -64,11 +78,25 @@ service=temporal-cloud temporal_namespace=<namespace> metric=temporal_cloud_v1_a
 metric=temporal_cloud_v1_* service=temporal-cloud temporal_namespace=<namespace> | count by metric, service, temporal_namespace
 ```
 
+```text
+metric=temporal_cloud_v1_service_request_throttled_count service=temporal-cloud temporal_namespace=<namespace> | sum by operation
+```
+
+```text
+metric=temporal_cloud_v1_operations_throttled_count service=temporal-cloud temporal_namespace=<namespace> | sum by operation
+```
+
+```text
+metric=temporal_cloud_v1_total_action_throttled_count service=temporal-cloud temporal_namespace=<namespace> | sum
+```
+
 In the EKS path, these metrics arrive through the Sumo Helm chart's OTLP HTTP source. Use `service=temporal-cloud` and `temporal_namespace` as the dashboard filters.
 
 ### Dashboard Population Notes
 
 Temporal Cloud OpenMetrics exports the most recent completed one-minute aggregate. Expect short delays after a workflow run before data appears in Sumo.
+
+The worker dashboard currently uses `_sum / _count` averages because histogram `_bucket` series were not present in the validated Sumo ingestion path. Do not describe those panels as p95 or p99. Production latency SLOs require preserving histogram buckets or using the Temporal Cloud precomputed percentile metrics without aggregating them across incompatible dimensions.
 
 Expected populated metrics after an EKS workflow burst:
 

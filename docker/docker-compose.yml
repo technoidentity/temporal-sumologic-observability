@@ -34,7 +34,7 @@ services:
     image: public.ecr.aws/sumologic/sumologic-otel-collector:latest
     container_name: sumologic-otel-collector
     user: "0:0"
-    # SUMOLOGIC_INSTALLATION_TOKEN, TEMPORAL_CLOUD_METRICS_API_KEY, etc. are read from .env.
+    # Sumo access credentials, the local OTLP source endpoint, and Temporal credentials are read from .env.
     env_file:
       - path: ../.env
         required: false

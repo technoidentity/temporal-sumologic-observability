@@ -12,9 +12,16 @@
 | `temporal_workflow_task_schedule_to_start_latency_seconds_*` | Workflow task pickup delay. |
 | `temporal_worker_task_slots_available` | Remaining worker execution capacity. |
 | `temporal_worker_task_slots_used` | Worker slot pressure. |
-| `temporal_num_pollers` | Worker poller health. |
+| `temporal_worker_start_total` | Worker process lifecycle and rollout diagnostics. |
+| `temporal_poller_start_total` | Poller-start lifecycle events. This is not a current-poller gauge. |
+| `temporal_workflow_task_execution_failed_total` | Workflow task failures such as workflow code, replay, or serialization problems. |
+| `temporal_activity_execution_failed_total` | Activity execution failures observed by the worker. |
+| `temporal_local_activity_execution_failed_total` | Local Activity failures, when Local Activities are used. |
+| `temporal_resource_slots_cpu_usage` / `temporal_resource_slots_mem_usage` | Java worker resource-based slot pressure where resource-based tuning is enabled. |
 | `temporal_sticky_cache_hit_total` | Sticky cache effectiveness. |
 | `temporal_sticky_cache_total_forced_eviction_total` | Sticky cache pressure. |
+
+The Java SDK does not emit `temporal_num_pollers`. Use Kubernetes readiness and replica health as the worker-presence signal, then corroborate with `temporal_cloud_v1_no_poller_tasks_count` and backlog. Do not infer current availability from the cumulative `temporal_poller_start_total` counter.
 
 ## Recommended Dashboard Fields
 
@@ -38,7 +45,10 @@
 | `temporal_cloud_v1_no_poller_tasks_count` | Task queues with no active pollers. |
 | `temporal_cloud_v1_service_request_count` | Temporal Cloud frontend request volume. |
 | `temporal_cloud_v1_service_error_count` | Temporal Cloud service errors by operation. |
-| `temporal_cloud_v1_resource_exhausted_error_count` | Namespace/resource throttling pressure. |
+| `temporal_cloud_v1_service_request_throttled_count` | Frontend requests throttled by service limits. |
+| `temporal_cloud_v1_operations_throttled_count` | Namespace operations throttled by rate limits. |
+| `temporal_cloud_v1_total_action_throttled_count` | Namespace actions throttled by the action limit. |
+| `temporal_cloud_v1_resource_exhausted_error_count` | Resource exhaustion errors. This metric explicitly excludes namespace-limit throttling. |
 
 For the EKS path, the Cloud scrape collector adds:
 

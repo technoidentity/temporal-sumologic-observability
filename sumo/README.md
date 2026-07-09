@@ -41,11 +41,10 @@ helm upgrade --install sumologic sumologic/sumologic \
 | Kubernetes metrics | Built-in cluster, node, pod, and workload collection. |
 | Kubernetes events | Built-in event collection. |
 | Temporal Cloud metrics | Dedicated collector in this directory scrapes Temporal Cloud OpenMetrics and exports to the Helm chart's OTLP metrics source. |
-| Traces | Not implemented in this app yet. Add OpenTelemetry Java instrumentation before claiming trace coverage. |
 
 ## Temporal Cloud Metrics
 
-Use this path only when the evaluation needs Temporal Cloud service-side metrics. The Kubernetes Helm chart does not automatically scrape `metrics.temporal.io`.
+Include this path for Temporal Cloud service-side metrics. The Kubernetes Helm chart does not automatically scrape `metrics.temporal.io`.
 
 Create the Temporal Cloud Metrics Read-Only secret:
 
@@ -61,13 +60,15 @@ kubectl apply -f sumo/temporal-cloud-otel-collector.yaml
 kubectl -n sumologic rollout status deployment/temporal-cloud-otel-collector
 ```
 
+The collector scrapes on Temporal Cloud's one-minute aggregation cadence, exposes an OpenTelemetry health endpoint for Kubernetes probes, uses memory limiting and retry/queue controls, and includes a PodDisruptionBudget. Keep it at one active scraping replica unless the target design provides deduplication or scrape sharding; blindly running duplicate Prometheus receivers can duplicate metric ingestion.
+
 Validated Sumo metric selector:
 
 ```text
 service=temporal-cloud temporal_namespace=<temporal-cloud-namespace> metric=temporal_cloud_v1_*
 ```
 
-The EKS path intentionally does not require `SUMOLOGIC_INSTALLATION_TOKEN`; it exports to the OTLP metrics source already created by the Sumo Helm release.
+The EKS path uses the Sumo Access ID and Access Key supplied to the Helm release. The dedicated Temporal Cloud collector exports to the OTLP metrics source created by that release.
 
 ## Credentials Needed Later
 
@@ -75,7 +76,7 @@ The EKS path intentionally does not require `SUMOLOGIC_INSTALLATION_TOKEN`; it e
 - Sumo Access Key.
 - Sumo deployment/region if your account is not the default endpoint.
 - EKS cluster name to show in Sumo.
-- Temporal Cloud Metrics Read-Only API key if the Cloud dashboard is included.
+- Temporal Cloud Metrics Read-Only API key for the Cloud dashboard.
 
 No Sumo or AWS credential belongs in this repository.
 
@@ -90,3 +91,7 @@ For automated validation, create or update a Sumo access key whose user/role can
 - Collector lookup: retain collector read access so the validation can confirm the Kubernetes collector is alive.
 
 Without those query scopes, validate from the Sumo UI using the queries in `sumo/validation-queries.md`.
+
+## Monitor Specification
+
+Use `sumo/production-monitor-specification.md` as the implementation contract for Sumo monitors. It corrects Java-specific metric assumptions, separates terminal workflow failures from SDK transport failures, defines throttling and limit signals, and records trigger, recovery, grouping, ownership, and validation requirements.
