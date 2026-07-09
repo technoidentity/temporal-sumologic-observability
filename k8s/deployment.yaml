@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: temporal-java-sumo-observability
+  namespace: temporal-observability
+  labels:
+    app.kubernetes.io/name: temporal-java-sumo-observability
+    app.kubernetes.io/component: temporal-worker
+    app.kubernetes.io/part-of: temporal-observability
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: temporal-java-sumo-observability
+      app.kubernetes.io/component: temporal-worker
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: temporal-java-sumo-observability
+        app.kubernetes.io/component: temporal-worker
+        app.kubernetes.io/part-of: temporal-observability
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: /actuator/prometheus
+        prometheus.io/port: "8080"
+        sumologic.com/sourceCategory: kubernetes/temporal/java/worker
+        sumologic.com/format: text
+    spec:
+      containers:
+        - name: app
+          image: replace-with-account-id.dkr.ecr.replace-with-region.amazonaws.com/temporal-java-sumo-observability:replace-with-tag
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: temporal-java-sumo-config
+          env:
+            - name: TEMPORAL_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: temporal-java-sumo-secrets
+                  key: temporalApiKey
+                  optional: true
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: http
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 6
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: http
+            initialDelaySeconds: 45
+            periodSeconds: 20
+            timeoutSeconds: 3
+            failureThreshold: 3
+          resources:
+            requests:
+              cpu: 250m
+              memory: 512Mi
+            limits:
+              cpu: "1"
+              memory: 1Gi

@@ -1,0 +1,110 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: temporal-cloud-otel-collector
+  namespace: sumologic
+  labels:
+    app.kubernetes.io/name: temporal-cloud-otel-collector
+    app.kubernetes.io/component: openmetrics-scrape
+    app.kubernetes.io/part-of: temporal-observability
+data:
+  config.yaml: |
+    receivers:
+      prometheus:
+        config:
+          scrape_configs:
+            - job_name: temporal-cloud
+              scheme: https
+              metrics_path: /v1/metrics
+              honor_timestamps: true
+              scrape_interval: 30s
+              scrape_timeout: 10s
+              authorization:
+                type: Bearer
+                credentials: ${env:TEMPORAL_CLOUD_METRICS_API_KEY}
+              params:
+                namespaces:
+                  - ${env:TEMPORAL_NAMESPACE}
+              static_configs:
+                - targets: ["metrics.temporal.io"]
+              relabel_configs:
+                - target_label: service
+                  replacement: temporal-cloud
+              metric_relabel_configs:
+                - source_labels: [__name__]
+                  regex: temporal_cloud_v1_.*
+                  action: keep
+
+    processors:
+      batch:
+        timeout: 5s
+
+    exporters:
+      sumologic:
+        endpoint: ${env:SUMO_ENDPOINT_DEFAULT_OTLP_METRICS_SOURCE}
+        metric_format: otlp
+        sending_queue:
+          enabled: true
+        decompose_otlp_histograms: true
+
+    service:
+      pipelines:
+        metrics:
+          receivers: [prometheus]
+          processors: [batch]
+          exporters: [sumologic]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: temporal-cloud-otel-collector
+  namespace: sumologic
+  labels:
+    app.kubernetes.io/name: temporal-cloud-otel-collector
+    app.kubernetes.io/component: openmetrics-scrape
+    app.kubernetes.io/part-of: temporal-observability
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: temporal-cloud-otel-collector
+      app.kubernetes.io/component: openmetrics-scrape
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: temporal-cloud-otel-collector
+        app.kubernetes.io/component: openmetrics-scrape
+        app.kubernetes.io/part-of: temporal-observability
+    spec:
+      containers:
+        - name: otelcol
+          image: public.ecr.aws/sumologic/sumologic-otel-collector:0.154.0-sumo-0
+          imagePullPolicy: IfNotPresent
+          args:
+            - --config=/etc/otelcol/config.yaml
+          env:
+            - name: TEMPORAL_NAMESPACE
+              value: replace-with-temporal-cloud-namespace
+            - name: SUMO_ENDPOINT_DEFAULT_OTLP_METRICS_SOURCE
+              valueFrom:
+                secretKeyRef:
+                  name: sumologic
+                  key: endpoint-metrics-otlp
+          envFrom:
+            - secretRef:
+                name: temporal-cloud-otel-collector-secrets
+          volumeMounts:
+            - name: config
+              mountPath: /etc/otelcol
+              readOnly: true
+          resources:
+            requests:
+              cpu: 50m
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
+      volumes:
+        - name: config
+          configMap:
+            name: temporal-cloud-otel-collector

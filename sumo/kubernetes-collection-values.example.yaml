@@ -1,0 +1,25 @@
+# Example Sumo Logic Kubernetes Collection values.
+# Keep this file credential-free. Pass real credentials from your shell,
+# CI secret store, or a private values file that is not committed.
+#
+# Official required values:
+#   sumologic.accessId
+#   sumologic.accessKey
+#   sumologic.clusterName
+
+sumologic:
+  accessId: "${SUMO_ACCESS_ID}"
+  accessKey: "${SUMO_ACCESS_KEY}"
+  clusterName: "replace-with-eks-cluster-name"
+
+  logs:
+    enabled: true
+
+  metrics:
+    enabled: true
+    collector:
+      otelcol:
+        scrapeInterval: 30s
+
+falco:
+  enabled: false
