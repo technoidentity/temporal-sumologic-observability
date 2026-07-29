@@ -3,7 +3,8 @@
 | Dashboard area | Primary metrics |
 |---|---|
 | Workflow throughput | `temporal_workflow_completed_total` |
-| Workflow failures | `temporal_request_failure_total`, `temporal_cloud_v1_workflow_failed_count` |
+| Workflow failures | `temporal_request_failure_total`, `temporal_cloud_v1_workflow_failed_count`, `temporal_workflow_task_execution_failed_total` |
+| Activity failures | `temporal_activity_execution_failed_total`, `temporal_cloud_v1_activity_fail_count`, `temporal_cloud_v1_activity_task_fail_count`, `temporal_cloud_v1_activity_timeout_count`, `temporal_cloud_v1_activity_task_timeout_count` |
 | Workflow latency | `temporal_workflow_endtoend_latency_seconds_sum`, `temporal_workflow_endtoend_latency_seconds_count` |
 | Workflow task pickup | `temporal_workflow_task_schedule_to_start_latency_seconds_sum`, `temporal_workflow_task_schedule_to_start_latency_seconds_count` |
 | Activity execution | `temporal_activity_execution_latency_seconds_sum`, `temporal_activity_execution_latency_seconds_count` |
@@ -17,7 +18,8 @@
 | Temporal Cloud limits | `temporal_cloud_v1_action_limit`, `temporal_cloud_v1_service_request_limit` |
 | Temporal Cloud service latency | `temporal_cloud_v1_service_latency_p50`, `temporal_cloud_v1_service_latency_p95`, `temporal_cloud_v1_service_latency_p99` |
 | Temporal Cloud schedules | `temporal_cloud_v1_schedule_action_success_count`, `temporal_cloud_v1_schedule_buffer_overruns_count`, `temporal_cloud_v1_schedule_missed_catchup_window_count`, `temporal_cloud_v1_schedule_rate_limited_count` |
-| Temporal Cloud replication | `temporal_cloud_v1_replication_lag_p50`, `temporal_cloud_v1_replication_lag_p95`, `temporal_cloud_v1_replication_lag_p99` |
+| Temporal Cloud replication | `temporal_cloud_v1_replication_lag_p50`, `temporal_cloud_v1_replication_lag_p95`, `temporal_cloud_v1_replication_lag_p99` (without aggregation) |
+| Temporal Cloud actions | `temporal_cloud_v1_total_action_count` (shown as average actions/sec over the panel window; not a cumulative action total) |
 
 The Temporal Cloud dashboard metric names were compared against Temporal's published OpenMetrics Grafana dashboard. Remaining blank panels should be treated as scenario coverage gaps unless the validation queries above also return no matching metric family after the scenario has run.
 

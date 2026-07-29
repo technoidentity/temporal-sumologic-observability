@@ -130,6 +130,14 @@
       {
         "key": "panel435198abf564430d",
         "structure": "{\"height\": 9, \"width\": 8, \"x\": 0, \"y\": 81}"
+      },
+      {
+        "key": "panel-workflow-task-failures",
+        "structure": "{\"height\": 9, \"width\": 8, \"x\": 8, \"y\": 81}"
+      },
+      {
+        "key": "panel-activity-failures",
+        "structure": "{\"height\": 9, \"width\": 8, \"x\": 16, \"y\": 81}"
       }
     ]
   },
@@ -898,6 +906,50 @@
           "queryKey": "A",
           "queryType": "Metrics",
           "queryString": "metric=temporal_sticky_cache_total_forced_eviction_total temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} service={{service}} | sum",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "key": "panel-workflow-task-failures",
+      "title": "Workflow Task Execution Failures",
+      "description": "Failed workflow task executions (nondeterminism, replay issues)",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_workflow_task_execution_failed_total temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} service={{service}} | sum by workflow_type,task_queue",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "key": "panel-activity-failures",
+      "title": "Activity Execution Failures",
+      "description": "Failed activity executions (application/dependency failures)",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=temporal_activity_execution_failed_total temporal_namespace={{temporal_namespace}} task_queue={{task_queue}} service={{service}} | sum by activity_type,task_queue",
           "metricsQueryMode": "Advanced",
           "metricsQueryData": null,
           "tracesQueryData": null,

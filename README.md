@@ -1,4 +1,5 @@
-# Temporal Java SDK + Sumo Logic Observability
+# Temporal Java SDK + Sumo Logic Metrics and Logs Observability
+
 
 This repository is organized around two paths:
 
@@ -250,6 +251,14 @@ Copy `.env.example` to `.env` for Docker validation only:
 ```bash
 cp .env.example .env
 ```
+
+### Security Considerations
+
+**Actuator Endpoint Security**: The worker exposes `/actuator/prometheus` with unrestricted access for in-cluster scraping by Sumo Logic. This endpoint MUST remain network-restricted and never be exposed through ingress, LoadBalancer, or external services in production. It exposes internal metrics that could leak operational information.
+
+In Kubernetes deployments, the actuator endpoint is only accessible within the cluster through the Service resource. Do not create an Ingress or LoadBalancer service pointing to this endpoint in production environments.
+
+### Configuration Variables
 
 | Variable | Purpose |
 |---|---|

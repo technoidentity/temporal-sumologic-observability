@@ -26,10 +26,23 @@ spec:
         sumologic.com/sourceCategory: kubernetes/temporal/java/worker
         sumologic.com/format: text
     spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65534
+        fsGroup: 65534
+        seccompProfile:
+          type: RuntimeDefault
       containers:
         - name: app
           image: replace-with-account-id.dkr.ecr.replace-with-region.amazonaws.com/temporal-java-sumo-observability:replace-with-tag
           imagePullPolicy: IfNotPresent
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            capabilities:
+              drop:
+                - ALL
           ports:
             - name: http
               containerPort: 8080
@@ -59,6 +72,9 @@ spec:
             periodSeconds: 20
             timeoutSeconds: 3
             failureThreshold: 3
+          volumeMounts:
+            - name: tmp
+              mountPath: /tmp
           resources:
             requests:
               cpu: 250m
@@ -66,3 +82,6 @@ spec:
             limits:
               cpu: "1"
               memory: 1Gi
+      volumes:
+        - name: tmp
+          emptyDir: {}
