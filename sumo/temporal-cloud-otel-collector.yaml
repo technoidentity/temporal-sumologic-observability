@@ -17,9 +17,9 @@ data:
               scheme: https
               metrics_path: /v1/metrics
               honor_timestamps: true
-              # Temporal Cloud publishes one-minute aggregates. Faster scraping adds
-              # cost without creating fresher source data.
-              scrape_interval: 60s
+              # Temporal Cloud publishes one-minute aggregates. Scrape at 30s to avoid
+              # missing datapoints when scrape timing drifts against the one-minute boundary.
+              scrape_interval: 30s
               scrape_timeout: 10s
               authorization:
                 type: Bearer
@@ -94,10 +94,23 @@ spec:
         app.kubernetes.io/component: openmetrics-scrape
         app.kubernetes.io/part-of: temporal-observability
     spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65534
+        fsGroup: 65534
+        seccompProfile:
+          type: RuntimeDefault
       containers:
         - name: otelcol
           image: public.ecr.aws/sumologic/sumologic-otel-collector:0.154.0-sumo-0
           imagePullPolicy: IfNotPresent
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            capabilities:
+              drop:
+                - ALL
           args:
             - --config=/etc/otelcol/config.yaml
           ports:
@@ -118,6 +131,8 @@ spec:
             - name: config
               mountPath: /etc/otelcol
               readOnly: true
+            - name: tmp
+              mountPath: /tmp
           resources:
             requests:
               cpu: 50m
@@ -145,6 +160,8 @@ spec:
         - name: config
           configMap:
             name: temporal-cloud-otel-collector
+        - name: tmp
+          emptyDir: {}
 ---
 apiVersion: policy/v1
 kind: PodDisruptionBudget
@@ -152,7 +169,7 @@ metadata:
   name: temporal-cloud-otel-collector
   namespace: sumologic
 spec:
-  minAvailable: 1
+  maxUnavailable: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: temporal-cloud-otel-collector

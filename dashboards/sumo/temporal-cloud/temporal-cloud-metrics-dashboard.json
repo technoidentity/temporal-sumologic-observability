@@ -198,6 +198,18 @@
       {
         "key": "panel-service-request-limit",
         "structure": "{\"height\":8,\"width\":12,\"x\":0,\"y\":176}"
+      },
+      {
+        "key": "panel-activity-terminal-failures",
+        "structure": "{\"height\":8,\"width\":12,\"x\":12,\"y\":176}"
+      },
+      {
+        "key": "panel-activity-attempt-failures",
+        "structure": "{\"height\":8,\"width\":12,\"x\":0,\"y\":184}"
+      },
+      {
+        "key": "panel-activity-retry-amplification",
+        "structure": "{\"height\":8,\"width\":12,\"x\":12,\"y\":184}"
       }
     ]
   },
@@ -869,13 +881,13 @@
     {
       "id": null,
       "key": "panel-30-days-actions",
-      "title": "30 Days Actions",
-      "visualSettings": "{\"general\": {\"mode\": \"distribution\", \"type\": \"column\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "title": "30 Days Average Action Rate",
+      "visualSettings": "{\"general\": {\"mode\": \"distribution\", \"type\": \"column\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"Actions/sec\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
       "keepVisualSettingsConsistentWithParent": true,
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_total_action_count | sum",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_total_action_count | avg",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -885,7 +897,7 @@
           "timeSource": "Message"
         }
       ],
-      "description": "Total actions in the last 30 days",
+      "description": "Average action rate per second over 30 days (multiply by 2592000 for approximate total)",
       "timeRange": {
         "type": "BeginBoundedTimeRange",
         "from": {
@@ -900,13 +912,13 @@
     {
       "id": null,
       "key": "panel-7-days-actions",
-      "title": "7 Days Actions",
-      "visualSettings": "{\"general\": {\"mode\": \"distribution\", \"type\": \"column\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "title": "7 Days Average Action Rate",
+      "visualSettings": "{\"general\": {\"mode\": \"distribution\", \"type\": \"column\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"Actions/sec\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
       "keepVisualSettingsConsistentWithParent": true,
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_total_action_count | sum",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_total_action_count | avg",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -916,7 +928,7 @@
           "timeSource": "Message"
         }
       ],
-      "description": "Total actions in the last 7 days",
+      "description": "Average action rate per second over 7 days (multiply by 604800 for approximate total)",
       "timeRange": {
         "type": "BeginBoundedTimeRange",
         "from": {
@@ -931,13 +943,13 @@
     {
       "id": null,
       "key": "panel-1-day-actions",
-      "title": "1 Day Actions",
-      "visualSettings": "{\"general\": {\"mode\": \"distribution\", \"type\": \"column\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "title": "1 Day Average Action Rate",
+      "visualSettings": "{\"general\": {\"mode\": \"distribution\", \"type\": \"column\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"Actions/sec\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
       "keepVisualSettingsConsistentWithParent": true,
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_total_action_count | sum",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_total_action_count | avg",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -947,7 +959,7 @@
           "timeSource": "Message"
         }
       ],
-      "description": "Total actions in the last 1 day",
+      "description": "Average action rate per second over 1 day (multiply by 86400 for approximate total)",
       "timeRange": {
         "type": "BeginBoundedTimeRange",
         "from": {
@@ -1266,7 +1278,7 @@
       "panelType": "SumoSearchPanel",
       "queries": [
         {
-          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_replication_lag_p50 | quantize to 1m using avg",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_replication_lag_p50",
           "queryType": "Metrics",
           "queryKey": "A",
           "metricsQueryMode": "Advanced",
@@ -1276,7 +1288,7 @@
           "timeSource": "Message"
         },
         {
-          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_replication_lag_p95 | quantize to 1m using avg",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_replication_lag_p95",
           "queryType": "Metrics",
           "queryKey": "B",
           "metricsQueryMode": "Advanced",
@@ -1286,7 +1298,7 @@
           "timeSource": "Message"
         },
         {
-          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_replication_lag_p99 | quantize to 1m using avg",
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_replication_lag_p99",
           "queryType": "Metrics",
           "queryKey": "C",
           "metricsQueryMode": "Advanced",
@@ -1429,6 +1441,138 @@
         }
       ],
       "description": "The percentile latencies for SignalWithStartWorkflowExecution operations",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-activity-terminal-failures",
+      "title": "Activity Terminal Failures",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_activity_fail_count | sum",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_activity_timeout_count | sum",
+          "queryType": "Metrics",
+          "queryKey": "B",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "Terminal activity failures (fail + timeout)",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-activity-attempt-failures",
+      "title": "Activity Per-Attempt Failures",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_activity_task_fail_count | sum",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_activity_task_timeout_count | sum",
+          "queryType": "Metrics",
+          "queryKey": "B",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "Per-attempt activity failures indicating retry pressure (task_fail + task_timeout)",
+      "timeRange": null,
+      "coloringRules": null,
+      "linkedDashboards": []
+    },
+    {
+      "id": null,
+      "key": "panel-activity-retry-amplification",
+      "title": "Activity Retry Amplification",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"color\": {\"family\": \"scheme9\"}, \"axes\": {\"axisX\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12}, \"axisY\": {\"title\": \"\", \"titleFontSize\": 12, \"labelFontSize\": 12, \"logarithmic\": false}}, \"legend\": {\"enabled\": true, \"verticalAlign\": \"bottom\", \"fontSize\": 12, \"maxHeight\": 50, \"showAsTable\": true, \"wrap\": true}, \"series\": {}, \"overrides\": []}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_activity_task_fail_count | sum",
+          "queryType": "Metrics",
+          "queryKey": "A",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_activity_task_timeout_count | sum",
+          "queryType": "Metrics",
+          "queryKey": "B",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_activity_fail_count | sum",
+          "queryType": "Metrics",
+          "queryKey": "C",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryString": "service={{cloud_service}} temporal_namespace={{temporal_namespace}} metric=temporal_cloud_v1_activity_timeout_count | sum",
+          "queryType": "Metrics",
+          "queryKey": "D",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryString": "(#A + #B) / (#C + #D)",
+          "queryType": "Metrics",
+          "queryKey": "metricsFormula",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "description": "Retry amplification ratio (attempts per terminal failure)",
       "timeRange": null,
       "coloringRules": null,
       "linkedDashboards": []

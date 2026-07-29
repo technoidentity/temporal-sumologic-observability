@@ -66,6 +66,12 @@ metric=temporal_workflow_completed_total service=temporal-java-sumo-observabilit
 
 Use these after the Temporal Cloud metrics scrape is configured:
 
+**Note**: Temporal's OpenMetrics v1 reference documents `temporal_cloud_v1_namespace_open_workflows` (current open workflow count per namespace). Smoke-test it in-account before locking dashboards:
+
+```text
+metric=temporal_cloud_v1_namespace_open_workflows service=temporal-cloud temporal_namespace=<namespace>
+```
+
 ```text
 service=temporal-cloud temporal_namespace=<namespace> metric=temporal_cloud_v1_workflow_success_count
 ```
