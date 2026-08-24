@@ -57,9 +57,53 @@ For the EKS path, the Cloud scrape collector adds:
 | `service` | `temporal-cloud` |
 | `temporal_namespace` | Temporal Cloud namespace requested from `metrics.temporal.io`. |
 
+## Temporal Self-Hosted Server Metrics
+
+These are native Temporal **server** metrics, emitted by the Frontend, History,
+Matching, and internal Worker roles at the server `/metrics` endpoint. They are
+**not** prefixed with `temporal_server_` (that prefix does not exist). Every name
+below is verified against Temporal's metric registry
+(`common/metrics/metric_defs.go`) and the official `temporalio/dashboards` server
+dashboards.
+
+| Metric | Why it matters |
+|---|---|
+| `service_requests` | Server RPC request volume by `service_name`/`operation`. Request denominator. |
+| `service_errors` / `service_error_with_type` | Server errors (untyped / typed via `error_type`). Build ratios against `service_requests`. |
+| `service_latency` (`_bucket`/`_sum`/`_count`) | Server RPC latency histogram. Average = `rate(_sum)/rate(_count)`. |
+| `service_pending_requests` | In-flight/pending request pressure (gauge). |
+| `client_requests` / `client_errors` / `client_latency` | Internal inter-service client calls, keyed by role/operation. |
+| `approximate_backlog_count` | Matching task-queue backlog depth. Direct backlog signal. |
+| `approximate_backlog_age_seconds` | Age of the oldest queued task. Queue-delay SLOs. |
+| `no_poller_tasks` | Tasks arriving with no recent poller. Corroborate with worker/K8s health. |
+| `poll_success` / `poll_success_sync` / `poll_timeouts` | Matching poll and sync-match behavior. |
+| `persistence_requests` | Persistence request volume by `operation`. |
+| `persistence_errors` / `persistence_error_with_type` | Persistence errors (untyped / typed). |
+| `persistence_errors_resource_exhausted` | Capacity/resource-exhaustion persistence errors, separated from general errors. |
+| `persistence_latency` (`_bucket`/`_sum`/`_count`) | Persistence latency histogram. |
+| `cache_size` / `cache_usage` / `cache_pinned_usage` | History cache families, grouped by `cache_type`. |
+| `restarts` | Server process restart counter (by `temporal_service_type`). |
+| `num_goroutines` / `memory_heap` / `memory_heapinuse` | Go runtime pressure; compare against pod CPU/memory limits. |
+| `action` | Server action counter. Self-hosted has no SaaS action-limit/throttle telemetry. |
+| `schedule_to_start_timeout` / `start_to_close_timeout` | Task pickup / execution timeout counters (by `operation`). |
+
+Recommended dimensions: `service_name` (`frontend`/`history`/`matching`/`worker`),
+`operation`, `namespace`, `cache_type`, `temporal_service_type`. Temporal's native
+role tag is `service_name`; `service_role` also exists but Temporal's own
+dashboards group by `service_name`. Do **not** rely on an invented `temporal_role`
+tag.
+
+Collection and naming caveats for the EKS path:
+
+| Concern | Note |
+|---|---|
+| No dedicated collector | Server metrics are scraped in-cluster by the Sumo Kubernetes Collection via `prometheus.io/*` pod annotations; there is no Cloud-style collector and no synthetic `service=temporal-self-hosted` dimension. |
+| Counter suffixes | Tally/Prometheus export uses bare names (`service_requests`); the OpenTelemetry framework adds `_total`. Inventory the landed names first. |
+| Namespace label collision | Temporal's own `namespace` label can collide with the Kubernetes namespace added by collection. Confirm whether the Temporal namespace lands as `namespace` or `exported_namespace` before filtering. |
+
 ## Callout
 
-Do not collapse worker metrics and Temporal Cloud metrics into one dashboard. They answer different questions:
+Do not collapse worker metrics, Temporal Cloud metrics, and Temporal Self-Hosted metrics into one dashboard. They answer different questions:
 
 - Worker metrics show application-side poller, slot, workflow, activity, and SDK request health.
-- Temporal Cloud metrics show service-side namespace/task-queue behavior exposed by Temporal Cloud.
+- Temporal Cloud and Self-Hosted metrics show service-side namespace/task-queue behavior exposed by the server.

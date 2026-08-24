@@ -131,3 +131,76 @@ metric=temporal_cloud_v1_schedule_action_success_count service=temporal-cloud te
 ```
 
 Blank panels are expected until the matching scenario occurs. Examples: schedule overrun, missed catchup, and rate-limited panels require those schedule conditions, cancellation panels require a workflow that is actually canceled, timeout panels require exported timeout counters, resource exhausted panels require throttling, and replication lag panels require a replicated namespace.
+
+## Temporal Self-Hosted Server Metrics
+
+Use these to validate a self-hosted Temporal Server (e.g. Helm chart). Server
+metrics are scraped in-cluster by the Sumo Kubernetes Collection from the
+Temporal `/metrics` endpoint via `prometheus.io/*` pod annotations — there is no
+dedicated Cloud-style collector.
+
+**Inventory first.** Before locking dashboard filters, confirm the exact landed
+metric and tag names, because the exposed names are framework-dependent (Tally
+export uses bare names like `service_requests`; the OpenTelemetry framework adds
+`_total`), and Kubernetes metadata added by collection can shadow Temporal's own
+`namespace` label as `exported_namespace`:
+
+```text
+metric=service_requests | count by service_name, operation
+```
+
+```text
+metric=persistence_* | count by metric, operation
+```
+
+Service health and topology (roles split by the native `service_name` tag):
+
+```text
+metric=service_requests service_name=frontend
+metric=service_requests service_name=history
+metric=service_requests service_name=matching
+metric=service_requests service_name=worker
+```
+
+```text
+metric=service_errors | sum by service_name, operation
+```
+
+Matching / task-queue backlog and poller health:
+
+```text
+metric=approximate_backlog_count | max by namespace
+metric=approximate_backlog_age_seconds | max by namespace
+metric=no_poller_tasks | sum by namespace
+metric=poll_success OR metric=poll_success_sync
+```
+
+Persistence and history cache:
+
+```text
+metric=persistence_requests | sum by operation
+metric=persistence_errors | sum by operation
+metric=persistence_errors_resource_exhausted
+metric=cache_usage | max by cache_type
+```
+
+Server runtime:
+
+```text
+metric=restarts | sum by temporal_service_type
+metric=num_goroutines | avg by temporal_service_type
+```
+
+A practical smoke gate should verify:
+
+- `StartWorkflowExecution` produces frontend `service_requests`
+- workflow-task and activity-task traffic appear as `service_requests` by `operation`
+- `persistence_requests` is non-zero
+- server metrics are visible from more than one `service_name`
+- latency panels resolve via `service_latency_sum` / `service_latency_count`
+
+Blank panels are expected for scenario-driven families (backlog, no-poller,
+resource-exhausted, timeouts) until the matching condition occurs. A blank panel
+whose family also returns nothing in the inventory queries above indicates a
+naming/collection gap rather than a scenario gap — adapt the filter to the landed
+name.

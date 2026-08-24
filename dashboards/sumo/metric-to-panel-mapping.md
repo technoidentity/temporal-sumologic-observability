@@ -21,6 +21,37 @@
 | Temporal Cloud replication | `temporal_cloud_v1_replication_lag_p50`, `temporal_cloud_v1_replication_lag_p95`, `temporal_cloud_v1_replication_lag_p99` (without aggregation) |
 | Temporal Cloud actions | `temporal_cloud_v1_total_action_count` (shown as average actions/sec over the panel window; not a cumulative action total) |
 
+## Temporal Self-Hosted Server Dashboard
+
+Every metric family below is verified against Temporal's metric registry
+(`common/metrics/metric_defs.go`) and the official `temporalio/dashboards`
+server dashboards. Server roles are split by the native `service_name` tag
+(`frontend`, `history`, `matching`, `worker`) — the same tag Temporal's own
+server dashboards use. Do not filter self-hosted panels by a `service`
+dimension; scraped server metrics do not carry one.
+
+| Dashboard area | Primary metrics |
+|---|---|
+| Service health (by role) | `service_requests`, `service_errors`, `service_pending_requests` |
+| Service error ratio | `service_errors` / `service_requests` (formula) |
+| Service latency (avg) | `service_latency_sum` / `service_latency_count` (formula) |
+| Inter-service client health | `client_errors`, `client_requests`, `client_latency_bucket` |
+| Workflow & task traffic | `service_requests` by `operation`, `action`, `workflow_success`, `workflow_failed` |
+| Task timeouts | `schedule_to_start_timeout`, `start_to_close_timeout` (by `operation`) |
+| Server topology | `service_requests` split by `service_name` |
+| Matching / task queue | `approximate_backlog_count`, `approximate_backlog_age_seconds`, `no_poller_tasks`, `poll_success`, `poll_success_sync`, `poll_timeouts` |
+| Persistence | `persistence_requests`, `persistence_errors`, `persistence_errors_resource_exhausted`, `persistence_latency_sum`/`_count` |
+| History cache | `cache_size`, `cache_usage`, `cache_pinned_usage` by `cache_type` |
+| Server runtime | `restarts`, `num_goroutines`, `memory_heap` by `temporal_service_type` |
+| Kubernetes correlation | `kube_pod_container_status_restarts_total`, `container_cpu_usage_seconds_total`, `container_memory_working_set_bytes` |
+
+Latency uses the average form `rate(*_latency_sum)/rate(*_latency_count)`:
+Sumo has no `histogram_quantile`, so a true p95/p99 from `*_latency_bucket`
+must be validated separately. Counter suffixes are framework-dependent — the
+default Tally/Prometheus export uses bare names (`service_requests`), while the
+OpenTelemetry framework adds `_total`. Inventory the exact landed names in the
+Sumo account before locking filters.
+
 The Temporal Cloud dashboard metric names were compared against Temporal's published OpenMetrics Grafana dashboard. Remaining blank panels should be treated as scenario coverage gaps unless the validation queries above also return no matching metric family after the scenario has run.
 
 The Java SDK does not emit `temporal_num_pollers`. Any older dashboard panel that queried it has been removed. Current worker availability must be taken from Kubernetes readiness/replica health and corroborated with Temporal Cloud no-poller and backlog signals.

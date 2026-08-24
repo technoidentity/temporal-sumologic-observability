@@ -61,7 +61,8 @@ Repository: `git@github.com:technoidentity/temporal-sumologic-observability.git`
 |  |- import-checklist.md
 |  |- metric-to-panel-mapping.md
 |  |- worker-sdk/worker-metrics-dashboard.json
-|  +- temporal-cloud/temporal-cloud-metrics-dashboard.json
+|  |- temporal-cloud/temporal-cloud-metrics-dashboard.json
+|  +- temporal-self-hosted/temporal-server-metrics-dashboard.json
 +- iac/terraform/eks/
    |- versions.tf
    |- main.tf
@@ -190,6 +191,22 @@ Local endpoints:
 
 Scenario drivers are documented in `docs/dashboard-scenario-drivers.md`.
 
+### Deployment Combinations
+
+This repository provides three independently selectable observability paths:
+
+1. Worker SDK observability
+2. Temporal Cloud service observability
+3. Temporal Self-Hosted Server observability
+
+Deployments should combine them as needed:
+
+* **Temporal Cloud + Java worker**
+  -> Worker dashboard + Temporal Cloud dashboard
+
+* **Self-hosted Temporal + Java worker**
+  -> Worker dashboard + Temporal Self-Hosted Server dashboard
+
 ## Dashboards
 
 Importable dashboards:
@@ -198,6 +215,7 @@ Importable dashboards:
 |---|---|
 | Worker SDK metrics | `dashboards/sumo/worker-sdk/worker-metrics-dashboard.json` |
 | Temporal Cloud metrics | `dashboards/sumo/temporal-cloud/temporal-cloud-metrics-dashboard.json` |
+| Temporal Self-Hosted metrics | `dashboards/sumo/temporal-self-hosted/temporal-server-metrics-dashboard.json` |
 
 The worker dashboard uses a `Service` variable for SDK metrics. Default value:
 
