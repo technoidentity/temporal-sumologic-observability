@@ -82,16 +82,16 @@ dashboards.
 | `persistence_errors_resource_exhausted` | Capacity/resource-exhaustion persistence errors, separated from general errors. |
 | `persistence_latency` (`_bucket`/`_sum`/`_count`) | Persistence latency histogram. |
 | `cache_size` / `cache_usage` / `cache_pinned_usage` | History cache families, grouped by `cache_type`. |
-| `restarts` | Server process restart counter (by `temporal_service_type`). |
+| `restarts` | Server process restart counter (by `service_name`). |
 | `num_goroutines` / `memory_heap` / `memory_heapinuse` | Go runtime pressure; compare against pod CPU/memory limits. |
 | `action` | Server action counter. Self-hosted has no SaaS action-limit/throttle telemetry. |
 | `schedule_to_start_timeout` / `start_to_close_timeout` | Task pickup / execution timeout counters (by `operation`). |
 
-Recommended dimensions: `service_name` (`frontend`/`history`/`matching`/`worker`),
-`operation`, `namespace`, `cache_type`, `temporal_service_type`. Temporal's native
-role tag is `service_name`; `service_role` also exists but Temporal's own
-dashboards group by `service_name`. Do **not** rely on an invented `temporal_role`
-tag.
+Recommended dimensions: `service_name` (`frontend`/`history`/`matching`/`worker`/`server`),
+`operation`, `namespace`, `cache_type`. The native role tag is `service_name` — it also
+tags server runtime metrics (`restarts`, `num_goroutines`, `memory_heap`), verified on
+Temporal Server 1.31.2. `service_role` also exists but Temporal's own dashboards group by
+`service_name`; do **not** rely on an invented `temporal_role` tag.
 
 Collection and naming caveats for the EKS path:
 

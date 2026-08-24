@@ -42,7 +42,7 @@ dimension; scraped server metrics do not carry one.
 | Matching / task queue | `approximate_backlog_count`, `approximate_backlog_age_seconds`, `no_poller_tasks`, `poll_success`, `poll_success_sync`, `poll_timeouts` |
 | Persistence | `persistence_requests`, `persistence_errors`, `persistence_errors_resource_exhausted`, `persistence_latency_sum`/`_count` |
 | History cache | `cache_size`, `cache_usage`, `cache_pinned_usage` by `cache_type` |
-| Server runtime | `restarts`, `num_goroutines`, `memory_heap` by `temporal_service_type` |
+| Server runtime | `restarts`, `num_goroutines`, `memory_heap` by `service_name` |
 | Kubernetes correlation | `kube_pod_container_status_restarts_total`, `container_cpu_usage_seconds_total`, `container_memory_working_set_bytes` |
 
 Latency uses the average form `rate(*_latency_sum)/rate(*_latency_count)`:

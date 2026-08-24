@@ -1,0 +1,28 @@
+# systemd unit for the Temporal Self-Hosted -> Sumo Logic metrics bridge.
+# Install on the host that can reach the Temporal server metrics port (ideally the
+# Temporal host itself, using localhost:6051 — fast and complete, no WAN truncation).
+#
+# Install:
+#   sudo install -m 0755 temporal-self-hosted-metrics-bridge.sh /usr/local/bin/temporal-self-hosted-metrics-bridge.sh
+#   printf 'SUMO_METRICS_URL=%s\n' 'https://endpointN.collection.sumologic.com/receiver/v1/http/XXXX' | sudo tee /etc/temporal-sumo-bridge.env >/dev/null
+#   sudo chmod 600 /etc/temporal-sumo-bridge.env
+#   sudo cp temporal-self-hosted-metrics-bridge.service /etc/systemd/system/
+#   sudo systemctl daemon-reload && sudo systemctl enable --now temporal-self-hosted-metrics-bridge
+#   journalctl -u temporal-self-hosted-metrics-bridge -f
+[Unit]
+Description=Temporal Self-Hosted -> Sumo Logic metrics bridge
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Environment=METRICS_ENDPOINT=http://localhost:6051/metrics
+Environment=INTERVAL_SECONDS=60
+# SUMO_METRICS_URL is provided here (kept out of git, chmod 600):
+EnvironmentFile=/etc/temporal-sumo-bridge.env
+ExecStart=/usr/local/bin/temporal-self-hosted-metrics-bridge.sh
+Restart=always
+RestartSec=10
+DynamicUser=yes
+
+[Install]
+WantedBy=multi-user.target

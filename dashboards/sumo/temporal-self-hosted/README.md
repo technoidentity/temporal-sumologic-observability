@@ -25,7 +25,7 @@ Sections:
 - **Persistence** — `persistence_requests`, `persistence_errors`, error ratio,
   average `persistence_latency`, `persistence_errors_resource_exhausted`.
 - **History Cache & Server Runtime** — `cache_usage`/`cache_size` by `cache_type`,
-  `restarts`/`num_goroutines`/`memory_heap` by `temporal_service_type`.
+  `restarts`/`num_goroutines`/`memory_heap` by `service_name`.
 - **Infrastructure Correlation** — Kubernetes pod restarts, CPU, and memory for
   Temporal pods (Sumo Kubernetes Collection).
 
@@ -35,10 +35,14 @@ dashboards.
 
 ## Dependencies
 
-The dashboard expects native Temporal Server metrics scraped in-cluster by the
-Sumo Kubernetes Collection from the server `/metrics` endpoint via
-`prometheus.io/*` pod annotations. A dedicated Cloud-style metrics collector is
-**not** required. See `sumo/temporal-self-hosted-collection-values.example.yaml`.
+The dashboard expects native Temporal Server metrics collected into Sumo:
+- **Kubernetes:** scrape in-cluster with the Sumo Kubernetes Collection from the
+  server `/metrics` endpoint via `prometheus.io/*` pod annotations. A dedicated
+  Cloud-style collector is **not** required. See
+  `sumo/temporal-self-hosted-collection-values.example.yaml`.
+- **EC2 / VM / Docker (non-Kubernetes):** forward the server `/metrics` to a Sumo
+  HTTP Logs & Metrics source with `sumo/temporal-self-hosted-metrics-bridge.sh`
+  (run continuously via `temporal-self-hosted-metrics-bridge.service`).
 
 Primary dimensions:
 - `service_name` — the native role tag (`frontend`, `history`, `matching`,
@@ -47,12 +51,20 @@ Primary dimensions:
 - `operation` — RPC or persistence operation.
 - `namespace` — Temporal namespace.
 - `cache_type` — history cache family.
-- `temporal_service_type` — role tag on server runtime metrics (`restarts`, etc.).
+- `service_name` also tags server runtime metrics (`restarts`, `num_goroutines`, `memory_heap`) in current server versions (verified on 1.31.2).
 
 ## Variables
 
-- `service_name` (Service Role) — default `*`; also `frontend`/`history`/`matching`/`worker`.
-- `namespace` (Temporal Namespace) — default `*`.
+- `service_name` (Service Role) — default `*`; also `frontend`/`history`/`matching`/`worker`/`server`.
+- `namespace` (Temporal Namespace) — **multi-select** dropdown, default `*`, populated
+  from live values (`metric=persistence_requests`, key `namespace`). Select one or more
+  namespaces (e.g. `ameriprise_agentic`) to scope the namespace-bearing panels.
+
+Namespace filtering is applied only to panels whose metrics carry a `namespace`
+label (service, workflow/task, matching/backlog, persistence). Server-wide panels
+that have no namespace dimension — history cache (`cache_*`) and runtime
+(`restarts`, `num_goroutines`, `memory_heap`) — are intentionally left global so a
+namespace selection does not blank them.
 
 There is intentionally **no** `service` variable: scraped server metrics do not
 carry a `service` dimension, so filtering by one would blank every panel.
