@@ -1,0 +1,73 @@
+# Example Sumo Logic Kubernetes Collection values for a Self-Hosted Temporal Server.
+#
+# Keep this file credential-free. Pass real credentials from your shell, CI
+# secret store, or a private values file that is not committed.
+#
+# Recommended path (per the guide): let the Sumo Logic Kubernetes Collection
+# discover Temporal Server pods through their prometheus.io/* annotations. The
+# official Temporal Helm chart already exposes a Prometheus listener and enables
+# metrics annotations by default, so a dedicated Cloud-style metrics collector is
+# NOT required for the server metrics path.
+#
+# Docs:
+#   https://www.sumologic.com/help/docs/send-data/kubernetes/collecting-metrics/
+#   https://github.com/temporalio/helm-charts/blob/main/charts/temporal/values.yaml
+
+sumologic:
+  accessId: "${SUMO_ACCESS_ID}"
+  accessKey: "${SUMO_ACCESS_KEY}"
+  clusterName: "replace-with-eks-cluster-name"
+
+  logs:
+    enabled: true      # Temporal Server container stdout/stderr (membership, persistence, requests)
+
+  metrics:
+    enabled: true
+    collector:
+      otelcol:
+        # Scrape frequently; Temporal Server emits at high frequency.
+        scrapeInterval: 15s
+
+# ---------------------------------------------------------------------------
+# Companion Temporal chart values (apply to the TEMPORAL Helm release, not this
+# Sumo release). Makes the metrics listener and annotation behavior explicit and
+# release-controlled even where the chart already defaults to equivalent values.
+#
+# server:
+#   config:
+#     metrics:
+#       prometheus:
+#         listenAddress: "0.0.0.0:9090"
+#         handlerPath: "/metrics"
+#         # framework: tally (bare metric names) OR opentelemetry (adds _total)
+#   metrics:
+#     annotations:
+#       enabled: true          # emits prometheus.io/scrape, prometheus.io/port, prometheus.io/path
+# ---------------------------------------------------------------------------
+
+# OPTIONAL fallback: an explicit scrape job, only if annotation discovery is not
+# used in your environment. honor_labels: true PRESERVES Temporal's native
+# labels (service_name, operation, namespace) so they are not overwritten by the
+# Kubernetes metadata below. Kubernetes metadata is mapped to distinct label
+# names to avoid colliding with Temporal's own `namespace` label.
+prometheus:
+  prometheusSpec:
+    additionalScrapeConfigs:
+      - job_name: 'temporal-server'
+        honor_labels: true
+        metrics_path: '/metrics'
+        kubernetes_sd_configs:
+          - role: pod
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_pod_label_app_kubernetes_io_name]
+            action: keep
+            regex: temporal
+          - source_labels: [__meta_kubernetes_namespace]
+            action: replace
+            target_label: kubernetes_namespace
+          - source_labels: [__meta_kubernetes_pod_name]
+            action: replace
+            target_label: pod
+          - source_labels: [__meta_kubernetes_pod_label_app_kubernetes_io_component]
+            action: replace
+            target_label: kubernetes_component

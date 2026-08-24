@@ -1,0 +1,1171 @@
+{
+  "type": "DashboardV2SyncDefinition",
+  "name": "Temporal Self-Hosted Server Metrics",
+  "description": "Self-hosted Temporal Server observability: service-role health, workflow/task traffic, topology, matching/backlog, persistence, history cache, server runtime, and Kubernetes correlation. Metric families verified against Temporal metric_defs.go and the official server dashboards.",
+  "title": "Temporal Self-Hosted Server Metrics",
+  "theme": "Light",
+  "topologyLabelMap": {
+    "data": {}
+  },
+  "refreshInterval": 60,
+  "timeRange": {
+    "type": "BeginBoundedTimeRange",
+    "from": {
+      "type": "RelativeTimeRangeBoundary",
+      "relativeTime": "-3h"
+    },
+    "to": null
+  },
+  "layout": {
+    "layoutType": "Grid",
+    "layoutStructures": [
+      {
+        "key": "panel-0",
+        "structure": "{\"height\": 2, \"width\": 24, \"x\": 0, \"y\": 0}"
+      },
+      {
+        "key": "panel-1",
+        "structure": "{\"height\": 8, \"width\": 8, \"x\": 0, \"y\": 2}"
+      },
+      {
+        "key": "panel-2",
+        "structure": "{\"height\": 8, \"width\": 8, \"x\": 8, \"y\": 2}"
+      },
+      {
+        "key": "panel-3",
+        "structure": "{\"height\": 8, \"width\": 8, \"x\": 16, \"y\": 2}"
+      },
+      {
+        "key": "panel-4",
+        "structure": "{\"height\": 8, \"width\": 8, \"x\": 0, \"y\": 10}"
+      },
+      {
+        "key": "panel-5",
+        "structure": "{\"height\": 8, \"width\": 8, \"x\": 8, \"y\": 10}"
+      },
+      {
+        "key": "panel-6",
+        "structure": "{\"height\": 8, \"width\": 8, \"x\": 16, \"y\": 10}"
+      },
+      {
+        "key": "panel-7",
+        "structure": "{\"height\": 2, \"width\": 24, \"x\": 0, \"y\": 18}"
+      },
+      {
+        "key": "panel-8",
+        "structure": "{\"height\": 8, \"width\": 12, \"x\": 0, \"y\": 20}"
+      },
+      {
+        "key": "panel-9",
+        "structure": "{\"height\": 8, \"width\": 12, \"x\": 12, \"y\": 20}"
+      },
+      {
+        "key": "panel-10",
+        "structure": "{\"height\": 8, \"width\": 6, \"x\": 0, \"y\": 28}"
+      },
+      {
+        "key": "panel-11",
+        "structure": "{\"height\": 8, \"width\": 6, \"x\": 6, \"y\": 28}"
+      },
+      {
+        "key": "panel-12",
+        "structure": "{\"height\": 8, \"width\": 6, \"x\": 12, \"y\": 28}"
+      },
+      {
+        "key": "panel-13",
+        "structure": "{\"height\": 8, \"width\": 6, \"x\": 18, \"y\": 28}"
+      },
+      {
+        "key": "panel-14",
+        "structure": "{\"height\": 2, \"width\": 24, \"x\": 0, \"y\": 36}"
+      },
+      {
+        "key": "panel-15",
+        "structure": "{\"height\": 8, \"width\": 6, \"x\": 0, \"y\": 38}"
+      },
+      {
+        "key": "panel-16",
+        "structure": "{\"height\": 8, \"width\": 6, \"x\": 6, \"y\": 38}"
+      },
+      {
+        "key": "panel-17",
+        "structure": "{\"height\": 8, \"width\": 6, \"x\": 12, \"y\": 38}"
+      },
+      {
+        "key": "panel-18",
+        "structure": "{\"height\": 8, \"width\": 6, \"x\": 18, \"y\": 38}"
+      },
+      {
+        "key": "panel-19",
+        "structure": "{\"height\": 2, \"width\": 24, \"x\": 0, \"y\": 46}"
+      },
+      {
+        "key": "panel-20",
+        "structure": "{\"height\": 8, \"width\": 8, \"x\": 0, \"y\": 48}"
+      },
+      {
+        "key": "panel-21",
+        "structure": "{\"height\": 8, \"width\": 8, \"x\": 8, \"y\": 48}"
+      },
+      {
+        "key": "panel-22",
+        "structure": "{\"height\": 8, \"width\": 8, \"x\": 16, \"y\": 48}"
+      },
+      {
+        "key": "panel-23",
+        "structure": "{\"height\": 8, \"width\": 8, \"x\": 0, \"y\": 56}"
+      },
+      {
+        "key": "panel-24",
+        "structure": "{\"height\": 8, \"width\": 8, \"x\": 8, \"y\": 56}"
+      },
+      {
+        "key": "panel-25",
+        "structure": "{\"height\": 8, \"width\": 8, \"x\": 16, \"y\": 56}"
+      },
+      {
+        "key": "panel-26",
+        "structure": "{\"height\": 2, \"width\": 24, \"x\": 0, \"y\": 64}"
+      },
+      {
+        "key": "panel-27",
+        "structure": "{\"height\": 8, \"width\": 8, \"x\": 0, \"y\": 66}"
+      },
+      {
+        "key": "panel-28",
+        "structure": "{\"height\": 8, \"width\": 8, \"x\": 8, \"y\": 66}"
+      },
+      {
+        "key": "panel-29",
+        "structure": "{\"height\": 8, \"width\": 8, \"x\": 16, \"y\": 66}"
+      },
+      {
+        "key": "panel-30",
+        "structure": "{\"height\": 8, \"width\": 12, \"x\": 0, \"y\": 74}"
+      },
+      {
+        "key": "panel-31",
+        "structure": "{\"height\": 8, \"width\": 12, \"x\": 12, \"y\": 74}"
+      },
+      {
+        "key": "panel-32",
+        "structure": "{\"height\": 2, \"width\": 24, \"x\": 0, \"y\": 82}"
+      },
+      {
+        "key": "panel-33",
+        "structure": "{\"height\": 8, \"width\": 8, \"x\": 0, \"y\": 84}"
+      },
+      {
+        "key": "panel-34",
+        "structure": "{\"height\": 8, \"width\": 8, \"x\": 8, \"y\": 84}"
+      },
+      {
+        "key": "panel-35",
+        "structure": "{\"height\": 8, \"width\": 8, \"x\": 16, \"y\": 84}"
+      },
+      {
+        "key": "panel-36",
+        "structure": "{\"height\": 8, \"width\": 12, \"x\": 0, \"y\": 92}"
+      },
+      {
+        "key": "panel-37",
+        "structure": "{\"height\": 8, \"width\": 12, \"x\": 12, \"y\": 92}"
+      },
+      {
+        "key": "panel-38",
+        "structure": "{\"height\": 2, \"width\": 24, \"x\": 0, \"y\": 100}"
+      },
+      {
+        "key": "panel-39",
+        "structure": "{\"height\": 8, \"width\": 8, \"x\": 0, \"y\": 102}"
+      },
+      {
+        "key": "panel-40",
+        "structure": "{\"height\": 8, \"width\": 8, \"x\": 8, \"y\": 102}"
+      },
+      {
+        "key": "panel-41",
+        "structure": "{\"height\": 8, \"width\": 8, \"x\": 16, \"y\": 102}"
+      }
+    ]
+  },
+  "panels": [
+    {
+      "id": null,
+      "key": "panel-0",
+      "title": "",
+      "panelType": "TextPanel",
+      "text": "## Service Health & Availability",
+      "description": "",
+      "keepVisualSettingsConsistentWithParent": true
+    },
+    {
+      "id": null,
+      "key": "panel-1",
+      "title": "Service Requests by Role",
+      "description": "Frontend/History/Matching/Worker request volume (service_requests).",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=service_requests service_name={{service_name}} | sum by service_name",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": null,
+      "key": "panel-2",
+      "title": "Service Errors by Role",
+      "description": "Unexpected server errors (service_errors).",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=service_errors service_name={{service_name}} | sum by service_name",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": null,
+      "key": "panel-3",
+      "title": "Service Error Ratio",
+      "description": "service_errors / service_requests. Apply a minimum-volume guard before alerting.",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=service_errors service_name={{service_name}} | sum",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryKey": "B",
+          "queryType": "Metrics",
+          "queryString": "metric=service_requests service_name={{service_name}} | sum",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryKey": "C",
+          "queryType": "Metrics",
+          "queryString": "#A / #B",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": null,
+      "key": "panel-4",
+      "title": "Service Latency (avg, ms)",
+      "description": "Average = rate(service_latency_sum)/rate(service_latency_count). True p95 needs histogram_quantile, unavailable in Sumo; validate buckets separately.",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=service_latency_sum service_name={{service_name}} | sum by operation",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryKey": "B",
+          "queryType": "Metrics",
+          "queryString": "metric=service_latency_count service_name={{service_name}} | sum by operation",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryKey": "C",
+          "queryType": "Metrics",
+          "queryString": "#A / #B",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": null,
+      "key": "panel-5",
+      "title": "Service Pending Requests",
+      "description": "In-flight/queued requests inside a service (service_pending_requests gauge).",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=service_pending_requests service_name={{service_name}} | avg by service_name",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": null,
+      "key": "panel-6",
+      "title": "Inter-service Client Errors",
+      "description": "Internal client call failures (client_errors) keyed by operation.",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=client_errors service_name={{service_name}} | sum by operation",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": null,
+      "key": "panel-7",
+      "title": "",
+      "panelType": "TextPanel",
+      "text": "## Workflow & Task Traffic",
+      "description": "",
+      "keepVisualSettingsConsistentWithParent": true
+    },
+    {
+      "id": null,
+      "key": "panel-8",
+      "title": "Frontend Requests by Operation",
+      "description": "Frontend RPC mix (StartWorkflowExecution, SignalWorkflowExecution, RespondWorkflowTaskCompleted, ...).",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=service_requests service_name=frontend | sum by operation",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": null,
+      "key": "panel-9",
+      "title": "Actions",
+      "description": "Server action counter (action). Self-hosted has no SaaS action-limit/throttle telemetry.",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"area\", \"displayType\": \"stacked\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=action service_name=frontend | rate",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": null,
+      "key": "panel-10",
+      "title": "Workflow Success",
+      "description": "Completed workflows (workflow_success).",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"area\", \"displayType\": \"stacked\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=workflow_success | sum",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": null,
+      "key": "panel-11",
+      "title": "Workflow Failed",
+      "description": "Failed workflows (workflow_failed).",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"column\", \"displayType\": \"stacked\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=workflow_failed | sum",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": null,
+      "key": "panel-12",
+      "title": "Schedule-to-Start Timeouts",
+      "description": "Task pickup timeouts (schedule_to_start_timeout) by operation.",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"column\", \"displayType\": \"stacked\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=schedule_to_start_timeout | sum by operation",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": null,
+      "key": "panel-13",
+      "title": "Start-to-Close Timeouts",
+      "description": "Execution timeouts (start_to_close_timeout) by operation.",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"column\", \"displayType\": \"stacked\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=start_to_close_timeout | sum by operation",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": null,
+      "key": "panel-14",
+      "title": "",
+      "panelType": "TextPanel",
+      "text": "## Server Topology / Subsystem Health",
+      "description": "",
+      "keepVisualSettingsConsistentWithParent": true
+    },
+    {
+      "id": null,
+      "key": "panel-15",
+      "title": "Frontend Requests",
+      "description": "service_requests on the frontend role by operation.",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=service_requests service_name=frontend | sum by operation",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": null,
+      "key": "panel-16",
+      "title": "History Requests",
+      "description": "service_requests on the history role by operation.",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=service_requests service_name=history | sum by operation",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": null,
+      "key": "panel-17",
+      "title": "Matching Requests",
+      "description": "service_requests on the matching role by operation.",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=service_requests service_name=matching | sum by operation",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": null,
+      "key": "panel-18",
+      "title": "Worker (internal) Requests",
+      "description": "service_requests on the internal worker role by operation.",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=service_requests service_name=worker | sum by operation",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": null,
+      "key": "panel-19",
+      "title": "",
+      "panelType": "TextPanel",
+      "text": "## Matching / Task Queue Health",
+      "description": "",
+      "keepVisualSettingsConsistentWithParent": true
+    },
+    {
+      "id": null,
+      "key": "panel-20",
+      "title": "Task Queue Backlog",
+      "description": "Approximate backlog depth (approximate_backlog_count) by namespace.",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=approximate_backlog_count namespace={{namespace}} | max by namespace",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": null,
+      "key": "panel-21",
+      "title": "Oldest Backlog Age (s)",
+      "description": "Age of oldest queued task (approximate_backlog_age_seconds).",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=approximate_backlog_age_seconds namespace={{namespace}} | max by namespace",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": null,
+      "key": "panel-22",
+      "title": "No-Poller Tasks",
+      "description": "Tasks arriving with no recent poller (no_poller_tasks). Corroborate with worker/K8s health.",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"column\", \"displayType\": \"stacked\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=no_poller_tasks namespace={{namespace}} | sum by namespace",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": null,
+      "key": "panel-23",
+      "title": "Poll Success",
+      "description": "Matching poll successes (poll_success).",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"area\", \"displayType\": \"stacked\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=poll_success | sum",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": null,
+      "key": "panel-24",
+      "title": "Sync Match (poll_success_sync)",
+      "description": "Sync-matched polls (poll_success_sync); low share vs poll_success implies backlog.",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"area\", \"displayType\": \"stacked\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=poll_success_sync | sum",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": null,
+      "key": "panel-25",
+      "title": "Poll Timeouts",
+      "description": "Long-poll timeouts (poll_timeouts).",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"column\", \"displayType\": \"stacked\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=poll_timeouts | sum",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": null,
+      "key": "panel-26",
+      "title": "",
+      "panelType": "TextPanel",
+      "text": "## Persistence",
+      "description": "",
+      "keepVisualSettingsConsistentWithParent": true
+    },
+    {
+      "id": null,
+      "key": "panel-27",
+      "title": "Persistence Requests",
+      "description": "Persistence request volume (persistence_requests) by operation.",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=persistence_requests | sum by operation",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": null,
+      "key": "panel-28",
+      "title": "Persistence Errors",
+      "description": "Persistence errors (persistence_errors) by operation.",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"column\", \"displayType\": \"stacked\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=persistence_errors | sum by operation",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": null,
+      "key": "panel-29",
+      "title": "Persistence Error Ratio",
+      "description": "persistence_errors / persistence_requests.",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=persistence_errors | sum",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryKey": "B",
+          "queryType": "Metrics",
+          "queryString": "metric=persistence_requests | sum",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryKey": "C",
+          "queryType": "Metrics",
+          "queryString": "#A / #B",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": null,
+      "key": "panel-30",
+      "title": "Persistence Latency (avg, ms)",
+      "description": "rate(persistence_latency_sum)/rate(persistence_latency_count) by operation.",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=persistence_latency_sum | sum by operation",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryKey": "B",
+          "queryType": "Metrics",
+          "queryString": "metric=persistence_latency_count | sum by operation",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        },
+        {
+          "queryKey": "C",
+          "queryType": "Metrics",
+          "queryString": "#A / #B",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": null,
+      "key": "panel-31",
+      "title": "Persistence Resource Exhausted",
+      "description": "Capacity/resource-exhaustion persistence errors (persistence_errors_resource_exhausted).",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"column\", \"displayType\": \"stacked\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=persistence_errors_resource_exhausted | sum",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": null,
+      "key": "panel-32",
+      "title": "",
+      "panelType": "TextPanel",
+      "text": "## History Cache & Server Runtime",
+      "description": "",
+      "keepVisualSettingsConsistentWithParent": true
+    },
+    {
+      "id": null,
+      "key": "panel-33",
+      "title": "History Cache Usage",
+      "description": "cache_usage by cache_type (validate cache_type values for the release).",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=cache_usage | max by cache_type",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": null,
+      "key": "panel-34",
+      "title": "History Cache Size",
+      "description": "cache_size by cache_type.",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=cache_size | max by cache_type",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": null,
+      "key": "panel-35",
+      "title": "Server Restarts",
+      "description": "Process restarts (restarts) by temporal_service_type; corroborate with K8s restart/OOM.",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"column\", \"displayType\": \"stacked\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=restarts | sum by temporal_service_type",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": null,
+      "key": "panel-36",
+      "title": "Goroutines",
+      "description": "num_goroutines by temporal_service_type.",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=num_goroutines | avg by temporal_service_type",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": null,
+      "key": "panel-37",
+      "title": "Heap Memory",
+      "description": "memory_heap by temporal_service_type; compare against pod memory limits.",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"line\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=memory_heap | avg by temporal_service_type",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": null,
+      "key": "panel-38",
+      "title": "",
+      "panelType": "TextPanel",
+      "text": "## Infrastructure Correlation (Kubernetes)",
+      "description": "",
+      "keepVisualSettingsConsistentWithParent": true
+    },
+    {
+      "id": null,
+      "key": "panel-39",
+      "title": "Pod Restarts (temporal*)",
+      "description": "kube_pod_container_status_restarts_total for Temporal pods (Sumo K8s Collection).",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"column\", \"displayType\": \"stacked\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=kube_pod_container_status_restarts_total pod=*temporal* | max by pod",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": null,
+      "key": "panel-40",
+      "title": "CPU Usage (temporal*)",
+      "description": "container_cpu_usage_seconds_total rate by pod.",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"area\", \"displayType\": \"stacked\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=container_cpu_usage_seconds_total pod=*temporal* | rate | sum by pod",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    },
+    {
+      "id": null,
+      "key": "panel-41",
+      "title": "Memory Working Set (temporal*)",
+      "description": "container_memory_working_set_bytes by pod.",
+      "visualSettings": "{\"general\": {\"mode\": \"timeSeries\", \"type\": \"area\", \"displayType\": \"stacked\"}, \"series\": {}}",
+      "keepVisualSettingsConsistentWithParent": true,
+      "panelType": "SumoSearchPanel",
+      "queries": [
+        {
+          "queryKey": "A",
+          "queryType": "Metrics",
+          "queryString": "metric=container_memory_working_set_bytes pod=*temporal* | max by pod",
+          "metricsQueryMode": "Advanced",
+          "metricsQueryData": null,
+          "tracesQueryData": null,
+          "parseMode": "Auto",
+          "timeSource": "Message"
+        }
+      ],
+      "timeRange": null,
+      "coloringRules": []
+    }
+  ],
+  "variables": [
+    {
+      "name": "service_name",
+      "displayName": "Service Role",
+      "defaultValue": "*",
+      "sourceDefinition": {
+        "variableSourceType": "CsvVariableSourceDefinition",
+        "values": "*,frontend,history,matching,worker"
+      },
+      "allowMultiSelect": false,
+      "includeAllOption": true,
+      "hideFromUI": false
+    },
+    {
+      "name": "namespace",
+      "displayName": "Temporal Namespace",
+      "defaultValue": "*",
+      "sourceDefinition": {
+        "variableSourceType": "MetadataVariableSourceDefinition",
+        "filter": "metric=service_requests",
+        "key": "namespace"
+      },
+      "allowMultiSelect": false,
+      "includeAllOption": true,
+      "hideFromUI": false
+    }
+  ],
+  "filters": [],
+  "coloringRules": []
+}
