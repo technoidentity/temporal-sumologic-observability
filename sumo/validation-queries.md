@@ -187,8 +187,8 @@ metric=cache_usage | max by cache_type
 Server runtime:
 
 ```text
-metric=restarts | sum by temporal_service_type
-metric=num_goroutines | avg by temporal_service_type
+metric=restarts | sum by service_name
+metric=num_goroutines | avg by service_name
 ```
 
 A practical smoke gate should verify:
